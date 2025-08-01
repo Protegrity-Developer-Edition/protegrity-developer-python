@@ -1,0 +1,15 @@
+build
+wheel
+black
+setuptools>=61.0
+pytest==8.3.5
+pytest-bdd==8.1.0
+allure-pytest-bdd==2.14.3
+allure-python-commons==2.14.3
+parse==1.20.2
+parse_type==0.6.4
+attrs==25.3.0
+requests==2.32.4
+python-dotenv==1.1.1
+pytest-html==4.1.1
+pytest-metadata==3.1.1
