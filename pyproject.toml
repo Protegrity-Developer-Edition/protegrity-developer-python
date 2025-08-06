@@ -1,0 +1,51 @@
+[project]
+name = "protegrity-developer-python"
+version = "0.9.0-rc.6"
+description = "Python module for integrating Protegrity's Data Discovery and Protection APIs into GenAI and traditional applications."
+authors = [{ name = "Protegrity", email="info@protegrity.com" }]
+requires-python = ">=3.9.23"
+dependencies = [
+    "requests",
+]
+readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE"]
+
+[project.urls]
+homepage = "https://www.protegrity.com/developers"
+repository = "https://github.com/Protegrity-Developer-Edition/protegrity-developer-python"
+documentation = "http://developer.docs.protegrity.com"
+
+[tool.setuptools]
+package-dir = { "" = "src" }
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+
+[tool.black]
+line-length = 88
+target-version = ['py39']
+include = '\.pyi?$'
+exclude = '''
+/(
+  \.git
+  | \.mypy_cache
+  | \.tox
+  | \.venv
+  | build
+  | dist
+)/
+'''
+
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "License :: OSI Approved :: MIT License",
+  "Operating System :: OS Independent"
+]
+
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
