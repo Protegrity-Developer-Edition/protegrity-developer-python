@@ -1,4 +1,4 @@
-# 🧪 End-to-End Test Suite for Protegrity Developer Edition 0.9.0 using Pytest-BDD
+# 🧪 End-to-End Test Suite for Protegrity Developer Python using Pytest-BDD
 
 This repository contains end-to-end (E2E) tests written using **pytest** with BDD-style scenarios. All tests are located in the `e2e/` directory.
 
@@ -6,10 +6,9 @@ This repository contains end-to-end (E2E) tests written using **pytest** with BD
 
 ## 🛠️ Prerequisites
 
-Ensure the following are installed on your system:
+Ensure that you have signed-up for Protegrity Developer Edition and following are installed on your system (Linux/Windows/MacOS):
 
--   **Platform**: Linux, Windows or MacOS
--   **Python**: Version 3.9 or higher (ensure the executable is available as `python`)
+-   **Python**: Version 3.12 or higher
 -   **Docker Compose**
 -   **Allure**
 
@@ -17,26 +16,27 @@ Ensure the following are installed on your system:
 
 ## ⚙️ Setup Instructions
 
-### 📁 Copy Required Files
+1. Copy the `samples` directory and `docker-compose.yml` from the `protegrity-developer-edition` repo to the root of this repo `protegrity-developer-python`.
 
-Copy the `samples` directory and `docker-compose.yml` from the `protegrity-developer-edition` repo to the root of this repo.
-
-1. Navigate to the root directory and install the required dependencies:
+2. Navigate to the root directory and install the required dependencies:
 
 ```bash
 pip install -r requirements.txt
 ```
 
-2. Run the `docker-compose.yml` file located in the root directory:
+3. Run the `docker-compose.yml` file located in the root directory:
 
 ```bash
-docker compose -f ./docker-compose.yml up -d
+docker compose up -d
 ```
 
 > **Note:** Automation assumes that Docker Compose is running on `localhost`.  
 > If it needs to run on a different machine, add the `"endpoint_url"` key in the `samples/config.json` and `e2e/data/mapping_config.json` files with a valid Discover URL.
+> Example: `"endpoint_url": "http://<IP>:8580/pty/data-discovery/v1.0/classify"`
 
-3. Generate the `environment.properties` file to capture environment details for the Allure report:
+4. Configure the required environment variables with the credentials received during Protegrity Developer Edition registration: DEV_EDITION_EMAIL, DEV_EDITION_PASSWORD and DEV_EDITION_API_KEY. Set these environment variables using your preferred method, such as `.env` files, `export` commands, system environment settings, or shell configuration files.
+
+5. Generate the `environment.properties` file to capture environment details for the Allure report:
 
 ```bash
 python tests/e2e/utils/generate_env_details.py
@@ -49,7 +49,7 @@ python tests/e2e/utils/generate_env_details.py
 From the root directory, run the tests using:
 
 ```bash
-pytest
+pytest tests/e2e --disable-warnings
 ```
 
 -   Results are stored in the `allure-results/` directory
