@@ -131,3 +131,6 @@ cython_debug/
 
 # Allure reports
 allure-results
+
+# Pytest BDD
+tests/e2e/data/protection_results/*.txt
