@@ -1,1 +1,0 @@
-My name is [PERSON], and I live in [CITY]. My Social Security number is [SOCIAL_SECURITY_NUMBER], and I am [AGE]. You can reach me on my cell at [PHONE_NUMBER] - that's a [STATE] number. The username I use to access my account is [USERNAME].
