@@ -7,6 +7,7 @@
 [![Linux](https://img.shields.io/badge/Linux-FCC624?style=flat&logo=linux&logoColor=black)](https://www.linux.org/)
 [![Windows](https://img.shields.io/badge/Windows-0078D6?style=flat&logo=windows&logoColor=white)](https://www.microsoft.com/windows/)
 [![macOS](https://img.shields.io/badge/mac%20os-000000?style=flat&logo=macos&logoColor=F0F0F0)](https://www.apple.com/macos/)
+[![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/Protegrity-Developer-Edition/protegrity-developer-python)
 </div>
 
 Welcome to the `protegrity-developer-python` repository, part of the Protegrity Developer Edition suite. This repository provides the Python module for integrating Protegrity's Data Discovery and Protection APIs into GenAI and traditional applications.
