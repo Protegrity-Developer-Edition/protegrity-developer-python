@@ -1,0 +1,53 @@
+{% set name = "protegrity-developer-python" %}
+{% set version = "1.0.0" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  # Building from local source
+  path: ..
+
+build:
+  number: 0
+  noarch: python
+
+requirements:
+  host:
+    - python >=3.12.11
+    - pip
+    - setuptools >=61.0
+  run:
+    - python >=3.12.11
+    - requests
+
+test:
+  imports:
+    - protegrity_developer_python
+    - appython
+  commands:
+    - pip check
+  requires:
+    - pip
+
+about:
+  home: https://www.protegrity.com/developers
+  license: MIT
+  license_family: MIT
+  license_file: LICENSE
+  summary: Python module for integrating Protegrity's Data Discovery and Protection APIs into GenAI and traditional applications
+  description: |
+    This repository contains two powerful modules designed to handle different aspects of data protection:
+    
+    - protegrity_developer_python - Focuses on data discovery, classification, and redaction of 
+      Personally Identifiable Information (PII) in unstructured text
+    - appython - Provides comprehensive data protection and unprotection capabilities for structured data
+    
+    Part of the Protegrity Developer Edition suite for integrating Protegrity's APIs into applications.
+  doc_url: http://developer.docs.protegrity.com
+  dev_url: https://github.com/Protegrity-Developer-Edition/protegrity-developer-python
+
+extra:
+  recipe-maintainers:
+    - Protegrity
