@@ -1,7 +1,7 @@
 <div align="center">
 
 # Protegrity Developer Edition Python
-[![Version](https://img.shields.io/badge/version-1.0.0-green.svg?style=flat)](https://github.com/Protegrity-Developer-Edition/protegrity-developer-python/releases)
+[![Version](https://img.shields.io/badge/version-1.1.0-green.svg?style=flat)](https://github.com/Protegrity-Developer-Edition/protegrity-developer-python/releases)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg?style=flat)](https://github.com/Protegrity-Developer-Edition/protegrity-developer-python/blob/main/LICENSE)
 [![Python 3.12+](https://img.shields.io/badge/python-3.12+-blue.svg?style=flat)](https://www.python.org/downloads/)
 [![Linux](https://img.shields.io/badge/Linux-FCC624?style=flat&logo=linux&logoColor=black)](https://www.linux.org/)
@@ -18,6 +18,7 @@ Customize, compile, and use the module as per your requirement.
 ## Table of Contents
 
 1. [Overview](#overview)
+    - [Why This Matters](#why-this-matters)
 2. [Repository Structure](#repository-structure)
 3. [Features](#features)
     - [Protegrity Developer Python](#Protegrity-Developer-Python)
@@ -44,6 +45,17 @@ This repository contains two powerful modules designed to handle different aspec
 - **protegrity_developer_python** - Focuses on data discovery, classification, and redaction of Personally Identifiable Information (PII) in unstructured text
 - **appython** - Provides comprehensive data protection and unprotection capabilities for structured data
 
+#### Why This Matters
+
+Sensitive data shows up in more places than you'd expect — logs, payloads, prompts, training sets, and unstructured text. This Python module gives you tools to find and protect that data using tokenization, masking, and discovery — whether it's in an AI pipeline or a local script. No infrastructure, no UI, just code.
+
+- **Developer-first experience:** Open APIs, sample apps, and modular design make it easy to embed data discovery and protection into any Python project. 
+
+- **Accelerate innovation:** Prototype and validate data discovery and protection strategies in a lightweight, containerized sandbox. 
+
+- **Enable responsible AI:** Protect sensitive information in training data, prompts, and outputs for GenAI and machine learning workflows. 
+
+- **Simplify compliance:** Meet regulatory requirements for data privacy with built-in detection and protection capabilities.
 
 ## Repository Structure
 
@@ -162,7 +174,7 @@ For setup instructions, please refer to the documentation [here](https://github.
 import protegrity_developer_python
 
 protegrity_developer_python.configure(
-    endpoint_url="http://localhost:8580/pty/data-discovery/v1.0/classify",
+    endpoint_url="http://localhost:8580/pty/data-discovery/v1.1/classify",
     named_entity_map={"PERSON": "NAME", "SOCIAL_SECURITY_NUMBER": "SSN"},
     masking_char="#",
     classification_score_threshold=0.6,
@@ -182,7 +194,7 @@ print(output_text)
 import protegrity_developer_python
 
 protegrity_developer_python.configure(
-    endpoint_url="http://localhost:8580/pty/data-discovery/v1.0/classify",
+    endpoint_url="http://localhost:8580/pty/data-discovery/v1.1/classify",
     named_entity_map={"PERSON": "NAME", "SOCIAL_SECURITY_NUMBER": "SSN"},
     masking_char="#",
     classification_score_threshold=0.6,
@@ -202,7 +214,7 @@ print(output_text)
 import protegrity_developer_python
 
 protegrity_developer_python.configure(
-    endpoint_url="http://localhost:8580/pty/data-discovery/v1.0/classify",
+    endpoint_url="http://localhost:8580/pty/data-discovery/v1.1/classify",
     named_entity_map={"PERSON": "NAME", "SOCIAL_SECURITY_NUMBER": "SSN"},
     masking_char="#",
     classification_score_threshold=0.6,

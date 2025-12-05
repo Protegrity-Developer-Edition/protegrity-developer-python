@@ -6,94 +6,115 @@ import os
 
 # Mapping of entity types to Protegrity data elements
 DATA_ELEMENT_MAPPING = {
-    "ABA_ROUTING_NUMBER": "number",
+    # Account Information
     "ACCOUNT_NAME": "string",
     "ACCOUNT_NUMBER": "number",
+    
+    # Personal Information
     "AGE": "number",
+    "GENDER": "string",
+    "TITLE": "string",
+    "PERSON": "string",
+    
+    # Financial
     "AMOUNT": "number",
-    "AU_ABN": "number",
-    "AU_ACN": "number",
-    "AU_MEDICARE": "number",
-    "AU_TFN": "number",
-    "BIC": "number",
-    "BITCOIN_ADDRESS": "address",
-    "BUILDING": "address",
-    "CITY": "city",
-    "COMPANY_NAME": "string",
-    "COUNTRY": "string",
-    "COUNTY": "string",
+    "BANK_ACCOUNT": "number",
     "CREDIT_CARD": "ccn",
-    "CREDIT_CARD_CVV": "number",
-    "CRYPTO": "address",
     "CURRENCY": "string",
     "CURRENCY_CODE": "string",
     "CURRENCY_NAME": "string",
     "CURRENCY_SYMBOL": "string",
-    "DATE": "datetime",
-    "DATE_OF_BIRTH": "datetime",
-    "DATE_TIME": "datetime",
+    
+    # Cryptocurrency
+    "CRYPTO_ADDRESS": "address",
+    
+    # Temporal
+    "DATETIME": "datetime",
+    "DOB": "datetime",
+    
+    # Identification Documents
     "DRIVER_LICENSE": "number",
+    "PASSPORT": "passport",
+    "NATIONAL_ID": "nin",
+    "SOCIAL_SECURITY_ID": "ssn",
+    
+    # Contact Information
     "EMAIL_ADDRESS": "email",
-    "ES_NIE": "nin",
-    "ES_NIF": "nin",
-    "ETHEREUM_ADDRESS": "address",
-    "FI_PERSONAL_IDENTITY_CODE": "nin",
-    "GENDER": "string",
-    "GEO_CCORDINATE": "address",
-    "IBAN_CODE": "iban",
-    "ID_CARD": "number",
-    "IN_AADHAAR": "nin",
-    "IN_PAN": "number",
-    "IN_PASSPORT": "passport",
+    "PHONE_NUMBER": "phone",
+    
+    # Healthcare
+    "HEALTH_CARE_ID": "number",
+    
+    # Location Information
+    "LOCATION": "address",
+    "ADDRESS": "address",
+    
+    # Network
+    "IP_ADDRESS": "address",
+    "MAC_ADDRESS": "address",
+    "URL": "address",
+    
+    # Tax
+    "TAX_ID": "number",
+    
+    # India-specific
     "IN_VEHICLE_REGISTRATION": "number",
     "IN_VOTER": "number",
-    "IP_ADDRESS": "address",
-    "IPV4": "address",
-    "IPV6": "address",
-    "IT_DRIVER_LICENSE": "number",
-    "IT_FISCAL_CODE": "nin",
-    "IT_IDENTITY_CARD": "number",
-    "IT_PASSPORT": "passport",
-    "LITECOIN_ADDRESS": "address",
-    "LOCATION": "address",
-    "MAC": "address",
-    "MEDICAL_LICENSE": "number",
-    "NRP": "number",
-    "ORGANIZATION": "string",
-    "PASSPORT": "passport",
+    "IN_GSTIN": "string",
+    
+    # Security
     "PASSWORD": "string",
-    "PERSON": "string",
-    "PHONE_NUMBER": "phone",
-    "PIN": "number",
-    "PL_PESEL": "nin",
-    "SECONDARYADDRESS": "address",
-    "SG_NRIC_FIN": "nin",
-    "SG_UEN": "number",
-    "SOCIAL_SECURITY_NUMBER": "ssn",
-    "STATE": "string",
-    "STREET": "address",
-    "TIME": "datetime",
-    "TITLE": "string",
-    "UK_NHS": "number",
-    "URL": "address",
-    "US_BANK_NUMBER": "number",
-    "US_DRIVER_LICENSE": "number",
-    "US_ITIN": "number",
-    "US_PASSPORT": "passport",
-    "US_SSN": "ssn",
     "USERNAME": "string",
-    "ZIP_CODE": "zipcode",
+    
+    # Organization
+    "ORGANIZATION": "string",
+    
+    # National Registration
+    "NRP": "number",
+    
+    # Korea
+    "KR_RRN": "number",
+    
+    # Thailand
+    "TH_TNIN": "nin",
 }
 
-# Default configuration
 CONFIG = {
-    "endpoint_url": os.getenv(
-        "DISCOVER_URL", "http://localhost:8580/pty/data-discovery/v1.0/classify"
-    ),
-    "named_entity_map": {},
-    "masking_char": "#",
-    "classification_score_threshold": 0.6,
-    "method": "redact",  # or "mask"
     "enable_logging": True,
     "log_level": "INFO",
+    "data-discovery": {
+        "endpoint_url": os.getenv(
+            "DISCOVER_URL", "http://localhost:8580/pty/data-discovery/v1.1/classify"
+        ),
+        "named_entity_map": {},
+        "masking_char": "#",
+        "classification_score_threshold": 0.6,
+        "method": "redact",  # or "mask"
+    },
+    "semantic-guardrails": {
+        "endpoint_url": os.getenv(
+            "SEMANTIC_GUARDRAILS_URL",
+            "http://localhost:8001/pty/semantic-guardrail/v1.1",
+        ),
+    },
 }
+
+
+def get_config(section: str = None) -> dict:
+    """
+    Get configuration for a specific section or the entire config.
+    
+    Args:
+        section (str, optional): Section name ('data-discovery', 'semantic-guardrails'). 
+                                If None, returns root config.
+    
+    Returns:
+        dict: Configuration dictionary for the requested section.
+    
+    Example:
+        >>> config = get_config('data-discovery')
+        >>> method = config['method']
+    """
+    if section and section in CONFIG:
+        return CONFIG[section]
+    return CONFIG

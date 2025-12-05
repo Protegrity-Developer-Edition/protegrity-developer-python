@@ -30,8 +30,8 @@ def test_configure_updates_settings():
     )
     from protegrity_developer_python.utils.constants import CONFIG as _config
 
-    assert _config["method"] == "mask"
-    assert _config["masking_char"] == "#"
+    assert _config["data-discovery"]["method"] == "mask"
+    assert _config["data-discovery"]["masking_char"] == "#"
     assert _config["enable_logging"] is True
     assert _config["log_level"] == "DEBUG"
 

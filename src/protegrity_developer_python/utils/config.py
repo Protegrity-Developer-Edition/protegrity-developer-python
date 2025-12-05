@@ -2,7 +2,7 @@
 Module for
 """
 
-from protegrity_developer_python.utils.constants import CONFIG as _config
+from protegrity_developer_python.utils.constants import CONFIG as _root_config, get_config
 from typing import Dict, Optional
 from protegrity_developer_python.utils.logger import get_logger
 import logging
@@ -33,24 +33,28 @@ def configure(
         log_level (str): Set the logging level.
     """
 
+    # Configure data-discovery settings
+    dd_config = get_config("data-discovery")
     if endpoint_url:
-        _config["endpoint_url"] = endpoint_url
+        dd_config["endpoint_url"] = endpoint_url
     if named_entity_map:
-        _config["named_entity_map"] = named_entity_map
+        dd_config["named_entity_map"] = named_entity_map
     if masking_char:
-        _config["masking_char"] = masking_char
+        dd_config["masking_char"] = masking_char
     if classification_score_threshold is not None:
-        _config["classification_score_threshold"] = classification_score_threshold
+        dd_config["classification_score_threshold"] = classification_score_threshold
     if method in ("redact", "mask"):
-        _config["method"] = method
+        dd_config["method"] = method
     elif method:
         logger.warning(
             "Invalid method specified: %s. Must be 'redact' or 'mask'.", method
         )
+    
+    # Configure global logging settings
     if enable_logging is not None:
-        _config["enable_logging"] = enable_logging
+        _root_config["enable_logging"] = enable_logging
         logger.disabled = not enable_logging
     if log_level:
-        _config["log_level"] = log_level
+        _root_config["log_level"] = log_level
         level = getattr(logging, log_level.upper(), logging.INFO)
         logger.setLevel(level)

@@ -5,9 +5,11 @@ Module for discovering PII entities using a discovery API.
 from typing import Dict
 import json
 import requests
-from protegrity_developer_python.utils.constants import CONFIG as _config
+from protegrity_developer_python.utils.constants import get_config
 from protegrity_developer_python.utils.logger import get_logger
 
+
+_config = get_config("data-discovery")
 # Get logger instance
 logger = get_logger()
 
@@ -22,14 +24,14 @@ def discover(text: str) -> Dict:
     Returns:
         dict: Full JSON response from the classification API.
     """
-    headers = {"Content-Type": "text/plain"}
+    headers = {"Content-Type": "text/plain; charset=utf-8"}
     params = {"score_threshold": _config["classification_score_threshold"]}
 
     try:
         response = requests.post(
             _config["endpoint_url"],
             headers=headers,
-            data=text,
+            data=text.encode("utf-8"),
             params=params,
             timeout=30,
         )
