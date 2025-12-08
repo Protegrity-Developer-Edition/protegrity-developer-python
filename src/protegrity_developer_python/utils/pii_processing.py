@@ -9,11 +9,14 @@ from protegrity_developer_python.utils.protector import get_protector_session
 from protegrity_developer_python.utils.logger import get_logger
 from protegrity_developer_python.utils.constants import (
     DATA_ELEMENT_MAPPING as entity_endpoint_mapped,
-    CONFIG as _config,
+    get_config,
 )
 
 # Get logger instance
 logger = get_logger()
+
+# Get data-discovery sub-config for backward compatibility
+_config = get_config("data-discovery")
 
 
 def _merge_overlapping_entities(
@@ -54,9 +57,19 @@ def _merge_overlapping_entities(
                 # Merge ranges
                 new_start = min(start, last_start)
                 new_end = max(end, last_end)
-                # Merge entities
+                # Merge entities (sorted by score descending, then lexicographically)
                 if entity != merged[-1][1]:
-                    new_entity = merged[-1][1] + "|" + entity
+                    last_entity = merged[-1][1]
+                    last_score = merged[-1][2]
+                    # Sort by score (descending), then lexicographically
+                    if last_score > score:
+                        entities = [last_entity, entity]
+                    elif last_score < score:
+                        entities = [entity, last_entity]
+                    else:
+                        # Scores equal, sort lexicographically
+                        entities = sorted([last_entity, entity])
+                    new_entity = "|".join(entities)
                 else:
                     new_entity = entity
                 # Take max score
@@ -67,6 +80,7 @@ def _merge_overlapping_entities(
 
     # Convert back to dictionary
     merged_entities = {tuple(k): (v, s) for k, v, s in merged}
+    logger.debug("Before Merging Entity spans: \n%s", entity_spans)
     logger.debug("Merged Entity spans: \n%s", merged_entities)
     return merged_entities
 
@@ -162,6 +176,7 @@ def protect_data(
         if "|" in entity:
             data_element = entity_endpoint_mapped[entity.split("|")[0]]
             entity_selected = entity.split("|")[0]
+            logger.debug("Multiple entities '%s' detected at span [%d:%d], using first entity for protection - %s.", entity, start, end, entity_selected)
             get_named_entity_map = _config["named_entity_map"].get(entity.split("|")[0], None)
         else:
             data_element = entity_endpoint_mapped[entity]
@@ -186,6 +201,15 @@ def protect_data(
                 )
 
                 text = text[:start] + f"[{entity_selected}]" + protected + f"[/{entity_selected}]" + text[end:]
+                logger.debug(
+                    "Entity '%s' at span [%d:%d] protected as [%s]%s[/%s].",
+                    entity,
+                    start,
+                    end,
+                    entity_selected,
+                    protected,
+                    entity_selected,
+                )
             except Exception:
                 logger.warning(
                     "Failed to protect entity '%s' at span [%d:%d] having value %s.",

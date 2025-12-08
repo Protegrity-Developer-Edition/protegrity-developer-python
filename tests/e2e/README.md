@@ -32,7 +32,7 @@ docker compose up -d
 
 > **Note:** Automation assumes that Docker Compose is running on `localhost`.  
 > If it needs to run on a different machine, add the `"endpoint_url"` key in the `samples/config.json` and `e2e/data/mapping_config.json` files with a valid Discover URL.
-> Example: `"endpoint_url": "http://<IP>:8580/pty/data-discovery/v1.0/classify"`
+> Example: `"endpoint_url": "http://<IP>:8580/pty/data-discovery/v1.1/classify"`
 
 4. Configure the required environment variables with the credentials received during Protegrity Developer Edition registration: DEV_EDITION_EMAIL, DEV_EDITION_PASSWORD and DEV_EDITION_API_KEY. Set these environment variables using your preferred method, such as `.env` files, `export` commands, system environment settings, or shell configuration files.
 
