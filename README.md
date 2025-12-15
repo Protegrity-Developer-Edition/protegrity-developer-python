@@ -1,12 +1,14 @@
 <div align="center">
 
 # Protegrity Developer Edition Python
-[![Version](https://img.shields.io/badge/version-1.0.0-green.svg?style=flat)](https://github.com/Protegrity-Developer-Edition/protegrity-developer-python/releases)
+[![Version](https://img.shields.io/badge/version-1.1.0-green.svg?style=flat)](https://github.com/Protegrity-Developer-Edition/protegrity-developer-python/releases)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg?style=flat)](https://github.com/Protegrity-Developer-Edition/protegrity-developer-python/blob/main/LICENSE)
 [![Python 3.12+](https://img.shields.io/badge/python-3.12+-blue.svg?style=flat)](https://www.python.org/downloads/)
 [![Linux](https://img.shields.io/badge/Linux-FCC624?style=flat&logo=linux&logoColor=black)](https://www.linux.org/)
 [![Windows](https://img.shields.io/badge/Windows-0078D6?style=flat&logo=windows&logoColor=white)](https://www.microsoft.com/windows/)
 [![macOS](https://img.shields.io/badge/mac%20os-000000?style=flat&logo=macos&logoColor=F0F0F0)](https://www.apple.com/macos/)
+[![PyPI 1.1.0](https://img.shields.io/pypi/v/protegrity-developer-python.svg)](https://pypi.org/project/protegrity-developer-python/)
+[![Anaconda 1.1.0](https://anaconda.org/protegrity/protegrity-developer-python/badges/version.svg?style=flat)](https://anaconda.org/protegrity/protegrity-developer-python)
 [![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/Protegrity-Developer-Edition/protegrity-developer-python)
 </div>
 
@@ -18,6 +20,7 @@ Customize, compile, and use the module as per your requirement.
 ## Table of Contents
 
 1. [Overview](#overview)
+    - [Why This Matters](#why-this-matters)
 2. [Repository Structure](#repository-structure)
 3. [Features](#features)
     - [Protegrity Developer Python](#Protegrity-Developer-Python)
@@ -44,6 +47,17 @@ This repository contains two powerful modules designed to handle different aspec
 - **protegrity_developer_python** - Focuses on data discovery, classification, and redaction of Personally Identifiable Information (PII) in unstructured text
 - **appython** - Provides comprehensive data protection and unprotection capabilities for structured data
 
+#### Why This Matters
+
+Sensitive data shows up in more places than you'd expect — logs, payloads, prompts, training sets, and unstructured text. This Python module gives you tools to find and protect that data using tokenization, masking, and discovery — whether it's in an AI pipeline or a local script. No infrastructure, no UI, just code.
+
+- **Developer-first experience:** Open APIs, sample apps, and modular design make it easy to embed data discovery and protection into any Python project. 
+
+- **Accelerate innovation:** Prototype and validate data discovery and protection strategies in a lightweight, containerized sandbox. 
+
+- **Enable responsible AI:** Protect sensitive information in training data, prompts, and outputs for GenAI and machine learning workflows. 
+
+- **Simplify compliance:** Meet regulatory requirements for data privacy with built-in detection and protection capabilities.
 
 ## Repository Structure
 
@@ -63,6 +77,7 @@ This repository contains two powerful modules designed to handle different aspec
 │   └── protegrity_developer_python
 │       ├── __init__.py
 │       ├── securefind.py
+│       ├── scan.py
 │       └── utils
 └── tests
     ├── e2e
@@ -77,7 +92,8 @@ This repository contains two powerful modules designed to handle different aspec
         │   ├── bulk
         │   ├── mock
         │   └── single
-        └── find_and_secure
+        ├── find_and_secure     
+        └── semantic_guardrail
 
 ```
 
@@ -91,6 +107,7 @@ This repository contains two powerful modules designed to handle different aspec
 | **Find and Protect**   | Classifies and protects Personally Identifiable Information (PII) in unstructured text using Protegrity protection policies.        |
 | **Find and Unprotect** | Restores original Personally Identifiable Information (PII) data from its protected form.                                           |
 | **Cross-Platform Support** | Compatible with **Linux**, **Windows**, and **MacOS**.                                   |
+| **Semantic Guardrail Support** | Scan conversations for PII and risk using Semantic Guardrail API.                     |
 
 ### Application Protector Python
 
@@ -162,8 +179,8 @@ For setup instructions, please refer to the documentation [here](https://github.
 import protegrity_developer_python
 
 protegrity_developer_python.configure(
-    endpoint_url="http://localhost:8580/pty/data-discovery/v1.0/classify",
-    named_entity_map={"PERSON": "NAME", "SOCIAL_SECURITY_NUMBER": "SSN"},
+    endpoint_url="http://localhost:8580/pty/data-discovery/v1.1/classify",
+    named_entity_map={"PERSON": "NAME", "SOCIAL_SECURITY_ID": "SSN"},
     masking_char="#",
     classification_score_threshold=0.6,
     method="redact",
@@ -182,8 +199,8 @@ print(output_text)
 import protegrity_developer_python
 
 protegrity_developer_python.configure(
-    endpoint_url="http://localhost:8580/pty/data-discovery/v1.0/classify",
-    named_entity_map={"PERSON": "NAME", "SOCIAL_SECURITY_NUMBER": "SSN"},
+    endpoint_url="http://localhost:8580/pty/data-discovery/v1.1/classify",
+    named_entity_map={"PERSON": "NAME", "SOCIAL_SECURITY_ID": "SSN"},
     masking_char="#",
     classification_score_threshold=0.6,
     method="redact",
@@ -202,8 +219,8 @@ print(output_text)
 import protegrity_developer_python
 
 protegrity_developer_python.configure(
-    endpoint_url="http://localhost:8580/pty/data-discovery/v1.0/classify",
-    named_entity_map={"PERSON": "NAME", "SOCIAL_SECURITY_NUMBER": "SSN"},
+    endpoint_url="http://localhost:8580/pty/data-discovery/v1.1/classify",
+    named_entity_map={"PERSON": "NAME", "SOCIAL_SECURITY_ID": "SSN"},
     masking_char="#",
     classification_score_threshold=0.6,
     method="redact",
@@ -212,7 +229,7 @@ protegrity_developer_python.configure(
 )
 
 #Pass the output received from find and protect
-input_text = "[PERSON]7ro8 lfU'I[/PERSON] SSN is [SOCIAL_SECURITY_NUMBER]616-16-2210[/SOCIAL_SECURITY_NUMBER]."
+input_text = "[PERSON]7ro8 lfU'I[/PERSON] SSN is [SOCIAL_SECURITY_ID]616-16-2210[/SOCIAL_SECURITY_ID]."
 output_text = protegrity_developer_python.find_and_unprotect(input_text)
 print(output_text)
 ```
@@ -266,6 +283,9 @@ print("Unprotected Data:%s "%unprotected_data)
 
 - [Protegrity Developer Edition documentation](http://developer.docs.protegrity.com/)
 - For API reference and tutorials, visit [Developer Portal](https://www.protegrity.com/developers)
+- For more information about Data Discovery, refer to the [Data Discovery documentation]( https://docs.protegrity.com/data-discovery/1.1.1/docs/).
+- For more information about Semantic Guardrails, refer to the [Semantic Guardrails documentation]( https://docs.protegrity.com/sem_guardrail/1.1.0/docs/).
+- For more information about Application Protector Python, refer to the [Application Protector Python documentation]( https://docs.protegrity.com/10.0/protectors/application_protector/ap_python/).
 
 ## Sample Use Case
 
