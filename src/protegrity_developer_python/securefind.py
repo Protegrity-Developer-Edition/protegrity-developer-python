@@ -30,6 +30,7 @@ def find_and_protect(text: str) -> str:
     """
     try:
         pii_entities = discover(text)
+        logger.debug("Discovered PII entities: %s", pii_entities)
         if pii_entities:
             pii_entity_spans = collect_entity_spans(pii_entities)
             return protect_data(pii_entity_spans, text)
@@ -73,6 +74,7 @@ def find_and_redact(text: str) -> str:
     """
     try:
         pii_entities = discover(text)
+        logger.debug("Discovered PII entities: %s", pii_entities)
         if pii_entities:
             pii_entity_spans = collect_entity_spans(pii_entities)
             return redact_data(pii_entity_spans, text)

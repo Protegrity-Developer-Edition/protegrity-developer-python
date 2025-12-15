@@ -18,7 +18,7 @@ Feature: Sensitive Data Protection using protegrity_developer_python
             """
         Then the output should be protected as follows:
             """
-            On March 15, 2025 at 10:30 AM, [PERSON]DIadE[/PERSON] called our support line at 203-555-1286 to report an issue with a recent transaction. The transaction was made using the [CREDIT_CARD]6731 8596 8633 7617[/CREDIT_CARD], and the confirmation was sent to [EMAIL_ADDRESS]ScraSM2yiu@gmaik.com[/EMAIL_ADDRESS]. Please ensure all sensitive data is redacted before sharing this report externally.
+            On March 15, 2025 at 10:30 AM, [PERSON]DIadE[/PERSON] called our support line at [PHONE_NUMBER]171-583-6916[/PHONE_NUMBER] to report an issue with a recent transaction. The transaction was made using the [CREDIT_CARD]6731 8596 8633 7617[/CREDIT_CARD], and the confirmation was sent to [EMAIL_ADDRESS]ScraSM2yiu@gmaik.com[/EMAIL_ADDRESS]. Please ensure all sensitive data is redacted before sharing this report externally.
             """
         When the user invokes the find_and_unprotect function with the protected output
         Then the unprotected output should match the original input
@@ -61,7 +61,7 @@ Feature: Sensitive Data Protection using protegrity_developer_python
             """
         Then the output should be protected as follows:
             """
-            [PERSON]SZvn mLb[/PERSON] (SSN: [SOCIAL_SECURITY_NUMBER]616-16-2210[/SOCIAL_SECURITY_NUMBER], 📧: [EMAIL_ADDRESS]EVsQ.Tv0@example.com[/EMAIL_ADDRESS]) from [LOCATION]OuT bQaK[/LOCATION] transferred ¥5000 to 王小明 (身份证号: 110101199003078888, 📱: [LOCATION]+iM fvU 3v0H T98V[/LOCATION]) in 北京市朝阳区. Meanwhile, [PERSON]5dDíF JhjGá3GK[/PERSON] (DNI: [ID_CARD]95805408Z[/ID_CARD], 📞: [AU_TFN]+39 012 771 097)[/AU_TFN] from [CITY]QSGGRk[/CITY] updated her IBAN to ES91 2100 0418 4502 0005 1332. 🏦💳 The transaction was logged at [DATE]3175-06-15[/DATE] 14:30:00 UTC. Everything looked normal until 🚨 a suspicious login was detected from IP [IP_ADDRESS]vk5.y8P.d.VP1[/IP_ADDRESS]. Stay safe online! 🔐🌐
+            [PERSON]SZvn mLb[/PERSON] (SSN: [SOCIAL_SECURITY_ID]616-16-2210[/SOCIAL_SECURITY_ID], 📧: [EMAIL_ADDRESS]EVsQ.Tv0@example.com[/EMAIL_ADDRESS]) from [LOCATION]OuT bQaK[/LOCATION] transferred ¥5000 to 王小明 (身份证号: 110101199003078888, 📱: [LOCATION]+Tw[/LOCATION] 138 0000 0000) in 北京市朝阳区. Meanwhile, [PERSON]5dDíF JhjGá3GK[/PERSON] (DNI: [NATIONAL_ID]92878314R[/NATIONAL_ID], 📞: [PHONE_NUMBER]+50 386 425 052)[/PHONE_NUMBER] from [LOCATION]Nx2Jzq[/LOCATION] updated her IBAN to [BANK_ACCOUNT]ES60 1851 6679 8134 4653 8175[/BANK_ACCOUNT]. 🏦💳 The transaction was logged at [DATETIME]3175-06-15[/DATETIME] 14:30:00 UTC. Everything looked normal until 🚨 a suspicious login was detected from IP [IP_ADDRESS]vk5.y8P.d.VP1[/IP_ADDRESS]. Stay safe online! 🔐🌐
             """
         When the user invokes the find_and_unprotect function with the protected output
         Then the unprotected output should match the original input

@@ -19,7 +19,7 @@ Feature: Sensitive Data Redaction and Masking using protegrity_developer_python
             """
         Then the output should be redacted as follows:
             """
-            On [DATE] at [TIME], [PERSON] called our support line at 203-555-1286 to report an issue with a recent transaction. The transaction was made using the [CREDIT_CARD], and the confirmation was sent to [EMAIL_ADDRESS]. Please ensure all sensitive data is redacted before sharing this report externally.
+            On [DATETIME] at [DATETIME], [PERSON] called our support line at [PHONE_NUMBER] to report an issue with a recent transaction. The transaction was made using the [CREDIT_CARD], and the confirmation was sent to [EMAIL_ADDRESS]. Please ensure all sensitive data is redacted before sharing this report externally.
             """
 
     @mask @discover
@@ -33,7 +33,7 @@ Feature: Sensitive Data Redaction and Masking using protegrity_developer_python
             """
         Then the output should be masked as follows:
             """
-            On ************** at ********, ***** called our support line at 203-555-1286 to report an issue with a recent transaction. The transaction was made using the *******************, and the confirmation was sent to ********************. Please ensure all sensitive data is redacted before sharing this report externally.
+            On ************** at ********, ***** called our support line at ************ to report an issue with a recent transaction. The transaction was made using the *******************, and the confirmation was sent to ********************. Please ensure all sensitive data is redacted before sharing this report externally.
             """
 
     @mask @discover
@@ -47,7 +47,7 @@ Feature: Sensitive Data Redaction and Masking using protegrity_developer_python
             """
         Then the output should be masked as follows:
             """
-            On %%%%%%%%%%%%%% at %%%%%%%%, %%%%% called our support line at 203-555-1286 to report an issue with a recent transaction. The transaction was made using the %%%%%%%%%%%%%%%%%%%, and the confirmation was sent to %%%%%%%%%%%%%%%%%%%%. Please ensure all sensitive data is redacted before sharing this report externally.
+            On %%%%%%%%%%%%%% at %%%%%%%%, %%%%% called our support line at %%%%%%%%%%%% to report an issue with a recent transaction. The transaction was made using the %%%%%%%%%%%%%%%%%%%, and the confirmation was sent to %%%%%%%%%%%%%%%%%%%%. Please ensure all sensitive data is redacted before sharing this report externally.
             """
 
     @redact @discover
@@ -102,7 +102,7 @@ Feature: Sensitive Data Redaction and Masking using protegrity_developer_python
             """
         Then the output should be redacted as follows by defaulting to "redact" method:
             """
-            [TIME|DATE_TIME|DATE]: [LOCATION] is the biggest planet in the solar system and has a mass that is more than twice that of all the other planets combined. It is known for its Great Red Spot, a giant storm that has been raging for [DATE_TIME].
+            [DATETIME]: [LOCATION] is the biggest planet in the solar system and has a mass that is more than twice that of all the other planets combined. It is known for its Great Red Spot, a giant storm that has been raging for [DATETIME].
             """
 
     @redact @discover
@@ -116,5 +116,5 @@ Feature: Sensitive Data Redaction and Masking using protegrity_developer_python
             """
         Then the output should be redacted as follows:
             """
-            [PERSON] (SSN: [SOCIAL_SECURITY_NUMBER], 📧: [EMAIL_ADDRESS]) from [LOCATION] transferred ¥5000 to 王小明 (身份证号: 110101199003078888, 📱: [LOCATION|PHONE_NUMBER]) in 北京市朝阳区. Meanwhile, [PERSON] (DNI: [ID_CARD], 📞: [AU_TFN|PHONE_NUMBER] from [CITY] updated her IBAN to [DATE_TIME|IBAN_CODE]. 🏦💳 The transaction was logged at [DATE] 14:30:00 UTC. Everything looked normal until 🚨 a suspicious login was detected from IP [IP_ADDRESS]. Stay safe online! 🔐🌐
+            [PERSON] (SSN: [SOCIAL_SECURITY_ID], 📧: [EMAIL_ADDRESS]) from [LOCATION] transferred ¥5000 to 王小明 (身份证号: 110101199003078888, 📱: [LOCATION] 138 0000 0000) in 北京市朝阳区. Meanwhile, [PERSON] (DNI: [NATIONAL_ID], 📞: [PHONE_NUMBER] from [LOCATION] updated her IBAN to [BANK_ACCOUNT|DATETIME]. 🏦💳 The transaction was logged at [DATETIME] 14:30:00 UTC. Everything looked normal until 🚨 a suspicious login was detected from IP [IP_ADDRESS]. Stay safe online! 🔐🌐
             """
