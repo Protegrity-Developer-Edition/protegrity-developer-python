@@ -19,10 +19,10 @@ ROOT_DIR = Path(__file__).resolve().parents[2]
 @pytest.fixture(scope="session")
 def test_configs():
     return {
-        "sample_app_find_and_redact": ROOT_DIR / "samples" / "sample-app-find-and-redact.py",
-        "sample_app_find_and_protect": ROOT_DIR / "samples" / "sample-app-find-and-protect.py",
-        "sample_app_find_and_unprotect": ROOT_DIR / "samples" / "sample-app-find-and-unprotect.py",
-        "sample_app_protection": ROOT_DIR / "samples" / "sample-app-protection.py",
+        "sample_app_find_and_redact": ROOT_DIR / "samples" / "python" / "sample-app-find-and-redact.py",
+        "sample_app_find_and_protect": ROOT_DIR / "samples" / "python" / "sample-app-find-and-protect.py",
+        "sample_app_find_and_unprotect": ROOT_DIR / "samples" / "python" / "sample-app-find-and-unprotect.py",
+        "sample_app_protection": ROOT_DIR / "samples" / "python" / "sample-app-protection.py",
         "sample_config_file": ROOT_DIR / "samples" / "config.json",
         "output_file_redact": ROOT_DIR / "samples" / "sample-data" / "output-redact.txt",
         "output_file_protect": ROOT_DIR / "samples" / "sample-data" / "output-protect.txt",

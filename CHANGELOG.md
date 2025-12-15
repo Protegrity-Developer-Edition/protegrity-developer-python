@@ -2,7 +2,84 @@
 
 All notable changes to the Protegrity Developer Edition Python project will be documented in this file.
 
-## [1.0.0] - Current Release
+## [1.1.0] - 2025-12-15
+
+### 🎉 Major New Features
+
+#### Semantic Guardrails v1.1.0 SDK Support
+- **Enhanced Risk Scoring**: Updated SDK to support Semantic Guardrails v1.1.0 with improved risk assessment capabilities
+- **Vertical-Specific Models**: Added support for Finance and Healthcare industry-specific models
+- **Multi-turn Conversation Support**: Enhanced PII scanning and risk scoring across conversation history
+- **Improved API Interface**: Streamlined SDK interface for semantic guardrail operations
+
+#### Data Discovery Enhancements
+- **Harmonized Classifications**: Support for categorized "harmonized" entity classifications
+- **Entity Mapping Updates**: Updated entity-to-data-element mapping to align with Data Discovery v1.1.1
+- **Improved Accuracy**: Enhanced classification accuracy and confidence scoring
+- **Overlapping Labels**: Fixed ordering logic for overlapping classification labels 
+
+#### Conda Package Support (NEW)
+- **Conda Recipe**: Added `conda-recipe/` directory with complete build configuration
+- **Cross-Platform Distribution**: Support for conda package distribution across platforms
+- **Meta.yaml Configuration**: Comprehensive conda package metadata and dependencies
+
+### 🏗️ Architecture & Structure Changes
+
+#### Repository Structure Enhancements
+- **Conda Recipe Directory**: New `conda-recipe/` with build scripts and metadata
+- **Enhanced Test Structure**: Improved test organization and expected outputs
+- **Configuration Updates**: Removed hardcoded endpoint URLs from `mapping_config.json`
+
+#### SDK Interface Improvements
+- **Cleaner APIs**: Simplified method signatures for semantic guardrail operations
+- **Better Error Handling**: Enhanced error messages and exception handling
+- **Type Hints**: Improved type annotations for better IDE support
+
+### 🔧 Enhanced Configuration & Service Features
+
+#### Configuration Updates
+- **Dynamic Endpoint Configuration**: Removed hardcoded `endpoint_url` from mapping configuration
+- **Flexible Mapping**: Enhanced entity mapping configuration options
+- **Environment-Based Config**: Better support for environment-specific configurations
+
+#### Testing Improvements
+- **Updated Test Outputs**: Refreshed expected test outputs to match Data Discovery 1.1.1 entity names and patterns
+- **Semantic Guardrails Unit Tests**: Updated unit tests for v1.1.0 compatibility
+- **Better Test Coverage**: Expanded test scenarios for new features
+
+### 📚 Documentation & Developer Experience
+
+#### README Enhancements
+- **"Why This Matters" Section**: Added context about the importance of data protection
+- **Improved Examples**: More comprehensive code examples and use cases
+- **Better Prerequisites**: Clearer setup instructions and dependency documentation
+
+#### Developer Guidance
+- **Conda Installation**: New installation method via conda packages
+- **API Documentation**: Enhanced inline documentation and docstrings
+- **Migration Notes**: Guidance for upgrading from 1.0.0 to 1.1.0
+
+### 🔄 Dependencies
+- **Updated Requirements**: Refreshed `requirements.txt` with compatible versions
+- **Conda Dependencies**: Added conda-specific dependency management
+- **Python Version**: Maintained Python 3.12.11+ requirement
+
+### 🔐 Security
+- **Dependency Updates**: Updated to latest secure versions of dependencies
+- **Vulnerability Fixes**: Applied security patches as needed
+
+### ⚠️ Breaking Changes
+- **Configuration Schema**: Removed `endpoint_url` from `mapping_config.json` - endpoints are now dynamically determined
+- **Entity Mapping**: Updated entity names and patterns to match Data Discovery 1.1.1 - may require configuration updates for custom mappings
+
+### 📦 Distribution
+- **PyPI Package**: Available as `protegrity-developer-python` v1.1.0
+- **Conda Package**: New distribution channel via conda (coming soon)
+- **Wheel Distribution**: Pre-built wheel available for quick installation
+
+---
+
+## [1.0.0] - 2025-09-30
 
 ### 🎉 Major New Features
 
@@ -93,7 +170,7 @@ All notable changes to the Protegrity Developer Edition Python project will be d
 
 ---
 
-## [Previous Release] - README1.md Baseline
+## [Previous Release] - README.md Baseline
 
 ### Features (Baseline)
 - Basic Find and Redact functionality
@@ -101,7 +178,3 @@ All notable changes to the Protegrity Developer Edition Python project will be d
 - Python 3.9.23 support
 - Basic configuration options
 - Simple repository structure
-
----
-
-*Note: This changelog reflects the transition from the previous single-module approach to the current dual-module architecture with enhanced protection capabilities.*
