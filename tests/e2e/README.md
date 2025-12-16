@@ -6,7 +6,7 @@ This repository contains end-to-end (E2E) tests written using **pytest** with BD
 
 ## 🛠️ Prerequisites
 
-Ensure that you have signed-up for Protegrity Developer Edition and following are installed on your system (Linux/Windows/MacOS):
+Ensure that you have signed-up for Protegrity AI Developer Edition and following are installed on your system (Linux/Windows/MacOS):
 
 -   **Python**: Version 3.12 or higher
 -   **Docker Compose**
@@ -34,7 +34,7 @@ docker compose up -d
 > If it needs to run on a different machine, add the `"endpoint_url"` key in the `samples/config.json` and `e2e/data/mapping_config.json` files with a valid Discover URL.
 > Example: `"endpoint_url": "http://<IP>:8580/pty/data-discovery/v1.1/classify"`
 
-4. Configure the required environment variables with the credentials received during Protegrity Developer Edition registration: DEV_EDITION_EMAIL, DEV_EDITION_PASSWORD and DEV_EDITION_API_KEY. Set these environment variables using your preferred method, such as `.env` files, `export` commands, system environment settings, or shell configuration files.
+4. Configure the required environment variables with the credentials received during Protegrity AI Developer Edition registration: DEV_EDITION_EMAIL, DEV_EDITION_PASSWORD and DEV_EDITION_API_KEY. Set these environment variables using your preferred method, such as `.env` files, `export` commands, system environment settings, or shell configuration files.
 
 5. Generate the `environment.properties` file to capture environment details for the Allure report:
 

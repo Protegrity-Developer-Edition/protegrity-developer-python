@@ -1,18 +1,18 @@
 <div align="center">
 
-# Protegrity Developer Edition Python
-[![Version](https://img.shields.io/badge/version-1.1.0-green.svg?style=flat)](https://github.com/Protegrity-Developer-Edition/protegrity-developer-python/releases)
+# Protegrity AI Developer Edition Python
+[![Version](https://img.shields.io/badge/version-1.1.1-green.svg?style=flat)](https://github.com/Protegrity-Developer-Edition/protegrity-developer-python/releases)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg?style=flat)](https://github.com/Protegrity-Developer-Edition/protegrity-developer-python/blob/main/LICENSE)
 [![Python 3.12+](https://img.shields.io/badge/python-3.12+-blue.svg?style=flat)](https://www.python.org/downloads/)
 [![Linux](https://img.shields.io/badge/Linux-FCC624?style=flat&logo=linux&logoColor=black)](https://www.linux.org/)
 [![Windows](https://img.shields.io/badge/Windows-0078D6?style=flat&logo=windows&logoColor=white)](https://www.microsoft.com/windows/)
 [![macOS](https://img.shields.io/badge/mac%20os-000000?style=flat&logo=macos&logoColor=F0F0F0)](https://www.apple.com/macos/)
-[![PyPI 1.1.0](https://img.shields.io/pypi/v/protegrity-developer-python.svg)](https://pypi.org/project/protegrity-developer-python/)
-[![Anaconda 1.1.0](https://anaconda.org/protegrity/protegrity-developer-python/badges/version.svg?style=flat)](https://anaconda.org/protegrity/protegrity-developer-python)
+[![PyPI 1.1.1](https://img.shields.io/pypi/v/protegrity-developer-python.svg)](https://pypi.org/project/protegrity-developer-python/)
+[![Anaconda 1.1.1](https://anaconda.org/protegrity/protegrity-developer-python/badges/version.svg?style=flat)](https://anaconda.org/protegrity/protegrity-developer-python)
 [![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/Protegrity-Developer-Edition/protegrity-developer-python)
 </div>
 
-Welcome to the `protegrity-developer-python` repository, part of the Protegrity Developer Edition suite. This repository provides the Python module for integrating Protegrity's Data Discovery and Protection APIs into GenAI and traditional applications.
+Welcome to the `protegrity-developer-python` repository, part of the Protegrity AI Developer Edition suite. This repository provides the Python module for integrating Protegrity's Data Discovery and Protection APIs into GenAI and traditional applications.
 Customize, compile, and use the module as per your requirement.
 
 > **💡Note:** This module should be built and used only if you intend to modify the source code or default behavior.
@@ -27,7 +27,7 @@ Customize, compile, and use the module as per your requirement.
     - [Application Protector Python](#Application-Protector-Python)
 4. [Getting Started](#getting-started)
    - [Prerequisites](#prerequisites)
-5. [Protegrity Developer Python Module](#protegrity-developer-python-module)
+5. [Protegrity AI Developer Edition Python Module](#protegrity-ai-developer-edition-python-module)
    - [Usage Examples](#usage-examples)
      - [Find and Redact](#find-and-redact)
      - [Find and Protect](#find-and-protect)
@@ -138,7 +138,7 @@ No additional prerequisites required beyond the common ones.
 
    **Obtaining Credentials**
 
-    **Developer Edition Portal Registration**
+    **Protegrity AI Developer Edition Portal Registration**
     - Visit [https://www.protegrity.com/developers/get-api-credentials](https://www.protegrity.com/developers/get-api-credentials)
     - Register for a developer account.
     - You will receive an email with your API Key and Password.
@@ -169,8 +169,8 @@ No additional prerequisites required beyond the common ones.
     ```
     The installation completes and the success message is displayed.
 
-## Protegrity Developer Python Module
-> **💡Note:** Ensure that the Protegrity Developer Edition is running before installing this module.
+## Protegrity AI Developer Edition Python Module
+> **💡Note:** Ensure that the Protegrity AI Developer Edition is running before installing this module.
 For setup instructions, please refer to the documentation [here](https://github.com/Protegrity-Developer-Edition/protegrity-developer-edition/blob/main/README.md).
 ### Usage Examples
 #### Find and Redact
@@ -277,11 +277,11 @@ print("Unprotected Data:%s "%unprotected_data)
 
 ```
 
-> **💡Note:** You **do not** need Protegrity Developer Edition running before executing Application Protector Python Module.
+> **💡Note:** You **do not** need Protegrity AI Developer Edition running before executing Application Protector Python Module.
 
 ## Documentation
 
-- [Protegrity Developer Edition documentation](http://developer.docs.protegrity.com/)
+- [Protegrity AI Developer Edition documentation](http://developer.docs.protegrity.com/)
 - For API reference and tutorials, visit [Developer Portal](https://www.protegrity.com/developers)
 - For more information about Data Discovery, refer to the [Data Discovery documentation]( https://docs.protegrity.com/data-discovery/1.1.1/docs/).
 - For more information about Semantic Guardrails, refer to the [Semantic Guardrails documentation]( https://docs.protegrity.com/sem_guardrail/1.1.0/docs/).
