@@ -1,6 +1,15 @@
 # Changelog
 
-All notable changes to the Protegrity Developer Edition Python project will be documented in this file.
+All notable changes to the Protegrity AI Developer Edition Python project will be documented in this file.
+
+## [1.1.1] - 2025-12-16
+
+### 📦 Distribution
+- **PyPI Package**: Re-released as v1.1.1 to update package metadata and README on PyPI
+
+**Note**: This is a documentation-only release. No code changes from v1.1.0.
+
+---
 
 ## [1.1.0] - 2025-12-15
 
@@ -88,7 +97,7 @@ All notable changes to the Protegrity Developer Edition Python project will be d
 - **Session Management**: Secure session handling for protection operations
 - **Single Data Operations**: Protect and unprotect individual data elements
 - **Bulk Data Operations**: Protect and unprotect multiple data elements in batch operations
-- **Cloud-based Protection**: Works without requiring local Protegrity Developer Edition installation
+- **Cloud-based Protection**: Works without requiring local Protegrity AI Developer Edition installation
 
 #### Enhanced Protegrity Developer Python Module
 - **Find and Protect**: New functionality for classifying and protecting PII in unstructured text
@@ -136,8 +145,8 @@ All notable changes to the Protegrity Developer Edition Python project will be d
 
 ### 🔐 Security & Authentication
 
-#### Developer Edition Portal Integration
-- **Cloud Authentication**: Integration with Protegrity Developer Edition Portal
+#### AI Developer Edition Portal Integration
+- **Cloud Authentication**: Integration with Protegrity AI Developer Edition Portal
 - **API Key Management**: Secure handling of API credentials
 - **Registration Process**: Streamlined developer account creation
 
