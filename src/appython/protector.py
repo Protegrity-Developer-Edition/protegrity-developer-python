@@ -78,7 +78,7 @@ class Protector(object):
             protector.get_version()
 
         """
-        return "1.1.0"
+        return "1.1.1"
 
     def get_version_ex(self):
         """Returns the extended version of the AP Python in use.
@@ -97,7 +97,7 @@ class Protector(object):
             protector.get_version_ex()
 
         """
-        return "SDK Version: 1.1.0, Core Version: 1.1.0"
+        return "SDK Version: 1.1.1, Core Version: 1.1.1"
 
     def terminate(self):
         return True
