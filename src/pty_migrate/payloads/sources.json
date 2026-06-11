@@ -1,0 +1,10 @@
+[
+    {
+        "name": "DevEditionSource",
+        "type": "FILE",
+        "connection": {
+            "userFile": "exampleusers.txt",
+            "groupFile": "examplegroups.txt"
+        }
+    }
+]

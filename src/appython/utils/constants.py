@@ -108,7 +108,7 @@ ERROR_MAPPING = {
     "Create operation failed.": "35, Create operation failed.",
     "Create operation was successful.": "34, Create operation was successful.",
     "Crypto operation failed": "13, Internal error occurring in a function call after the Core Provider has been opened.",
-    "Data is too long to be protected/unprotected": "13, Internal error occurring in a function call after the Core Provider has been opened.",
+    "Data is too long to be protected/unprotected": "23, Data is too long to be protected/unprotected.",
     "Data is too long to be protected/unprotected.": "23, Data is too long to be protected/unprotected.",
     "Data is too short to be protected/unprotected.": "22, Data is too short to be protected/unprotected.",
     "Data protect operation failed.": "7, Data protection failed.",

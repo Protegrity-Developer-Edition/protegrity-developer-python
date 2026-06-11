@@ -1,0 +1,13 @@
+[
+    {
+        "name": "DevEditionPolicy",
+        "description": "Policy for Protegrity Developer Edition.",
+        "template": {
+            "access": {
+                "protect": false,
+                "reProtect": false,
+                "unProtect": false
+            }
+        }
+    }
+]

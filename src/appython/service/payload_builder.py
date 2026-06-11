@@ -11,16 +11,24 @@ from appython.utils.constants import (
     LOG_RETURN_CODE_UNSUPPORTED as log_return_code
 )
 
-def get_base_url(operation_type: str) -> str:
+def get_base_url(operation_type: str, config=None) -> str:
     """
     Constructs the base URL for the API endpoint based on the operation type.
 
     Parameters:
         operation_type (str): The type of operation (e.g., 'PROTECT', 'UNPROTECT', 'REPROTECT').
+        config (dict, optional): SDK config dict. If provided, uses protect_host and version from it.
 
     Returns:
         str: The constructed base URL for the API call.
     """
+    if config and config.get("protect_host"):
+        # New config-driven path: PTY_CP_HOST already includes scheme + domain + base path
+        protect_host = config["protect_host"].rstrip("/")
+        api_version = config.get("version", "1")
+        return f"{protect_host}/v{api_version}/{operation_type}"
+
+    # Legacy path: build from DEV_EDITION_HOST
     runtime_host = os.getenv('DEV_EDITION_HOST', host)
     runtime_version = os.getenv('DEV_EDITION_VERSION', version)
 
@@ -28,7 +36,7 @@ def get_base_url(operation_type: str) -> str:
 
 
 class PayloadBuilder:
-    def build_api_request(input: dict, arguments: dict, operation_type: str):
+    def build_api_request(input: dict, arguments: dict, operation_type: str, config=None):
         """
         Builds the API request payload and return type metadata for a given data protection operation.
 
@@ -130,4 +138,4 @@ class PayloadBuilder:
         return_type_template["response_type"] = response_type
         return_type_template["charset"] = input["charset"]
 
-        return payload_template, return_type_template, get_base_url(operation_type)
+        return payload_template, return_type_template, get_base_url(operation_type, config)

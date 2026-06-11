@@ -1,0 +1,42 @@
+[
+    {
+        "label": "latin_german_numeric",
+        "codePoints": ["00E4", "00F6", "00FC", "00C4", "00D6", "00DC", "00DF"],
+        "ranges": [
+            { "from": "0041", "to": "005A" },
+            { "from": "0061", "to": "007A" },
+            { "from": "0100", "to": "017F" },
+            { "from": "0180", "to": "024F" },
+            { "from": "0030", "to": "0039" }
+        ]
+    },
+    {
+        "label": "latin_french_numeric",
+        "ranges": [
+            { "from": "0041", "to": "005A" },
+            { "from": "0061", "to": "007A" },
+            { "from": "00C0", "to": "00FF" },
+            { "from": "0100", "to": "017F" },
+            { "from": "0030", "to": "0039" }
+        ]
+    },
+    {
+        "label": "latin_german",
+        "codePoints": ["00E4", "00F6", "00FC", "00C4", "00D6", "00DC", "00DF"],
+        "ranges": [
+            { "from": "0041", "to": "005A" },
+            { "from": "0061", "to": "007A" },
+            { "from": "0100", "to": "017F" },
+            { "from": "0180", "to": "024F" }
+        ]
+    },
+    {
+        "label": "latin_french",
+        "ranges": [
+            { "from": "0041", "to": "005A" },
+            { "from": "0061", "to": "007A" },
+            { "from": "00C0", "to": "00FF" },
+            { "from": "0100", "to": "017F" }
+        ]
+    }
+]

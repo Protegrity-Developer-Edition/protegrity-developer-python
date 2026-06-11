@@ -1,0 +1,62 @@
+{
+    "roles/1/members": [
+        {
+            "name": "superuser",
+            "source": "1",
+            "type": "USER"
+        }
+    ],
+    "roles/2/members": [
+        {
+            "name": "admin",
+            "source": "1",
+            "type": "USER"
+        },
+        {
+            "name": "devops",
+            "source": "1",
+            "type": "USER"
+        },
+        {
+            "name": "jay.banerjee",
+            "source": "1",
+            "type": "USER"
+        }
+    ],
+    "roles/3/members": [
+        {
+            "name": "finance",
+            "source": "1",
+            "type": "USER"
+        },
+        {
+            "name": "robin.goodwill",
+            "source": "1",
+            "type": "USER"
+        }
+    ],
+    "roles/4/members": [
+        {
+            "name": "marketing",
+            "source": "1",
+            "type": "USER"
+        },
+        {
+            "name": "merlin.ishida",
+            "source": "1",
+            "type": "USER"
+        }
+    ],
+    "roles/5/members": [
+        {
+            "name": "hr",
+            "source": "1",
+            "type": "USER"
+        },
+        {
+            "name": "paloma.torres",
+            "source": "1",
+            "type": "USER"
+        }
+    ]
+}

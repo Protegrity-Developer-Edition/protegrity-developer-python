@@ -83,9 +83,9 @@ Feature: Unsuccessful Protection Operations For Various Combinations of User, Op
             | protect   | superuser | int          | abcdef                                                                         | exception | None   | 44, The content of the input data is not valid. |
             | unprotect | superuser | int          | abcdef                                                                         | exception | None   | 44, The content of the input data is not valid. |
             | reprotect | superuser | int          | abcdef                                                                         | exception | None   | 44, The content of the input data is not valid. |
-            | protect   | superuser | datetime     | 1906-12-02 13:11:09 4004453117                                                 | exception | None   | 44, The content of the input data is not valid. |
-            | unprotect | superuser | datetime     | 1906-12-02 13:11:09 4004453117                                                 | exception | None   | 44, The content of the input data is not valid. |
-            | reprotect | superuser | datetime     | 1906-12-02 13:11:09 4004453117                                                 | exception | None   | 44, The content of the input data is not valid. |
+            | protect   | superuser | datetime     | 1906-12-02 13:11:09 400445311712345678                                         | exception | None   | 44, The content of the input data is not valid. |
+            | unprotect | superuser | datetime     | 1906-12-02 13:11:09 400445311712345678                                         | exception | None   | 44, The content of the input data is not valid. |
+            | reprotect | superuser | datetime     | 1906-12-02 13:11:09 400445311712345678                                         | exception | None   | 44, The content of the input data is not valid. |
             | protect   | superuser | datetime     | 1906:12:02                                                                     | exception | None   | 44, The content of the input data is not valid. |
             | unprotect | superuser | datetime     | 1906:12:02                                                                     | exception | None   | 44, The content of the input data is not valid. |
             | reprotect | superuser | datetime     | 1906:12:02                                                                     | exception | None   | 44, The content of the input data is not valid. |
@@ -109,9 +109,9 @@ Feature: Unsuccessful Protection Operations For Various Combinations of User, Op
             | protect   | superuser | int          | abcdef                                                                         | exception | None   | 44, The content of the input data is not valid. |
             | unprotect | superuser | int          | abcdef                                                                         | exception | None   | 44, The content of the input data is not valid. |
             | reprotect | superuser | int          | abcdef                                                                         | exception | None   | 44, The content of the input data is not valid. |
-            | protect   | superuser | datetime     | 1906-12-02 13:11:09 4004453117                                                 | exception | None   | 44, The content of the input data is not valid. |
-            | unprotect | superuser | datetime     | 1906-12-02 13:11:09 4004453117                                                 | exception | None   | 44, The content of the input data is not valid. |
-            | reprotect | superuser | datetime     | 1906-12-02 13:11:09 4004453117                                                 | exception | None   | 44, The content of the input data is not valid. |
+            | protect   | superuser | datetime     | 1906-12-02 13:11:09 400445311712345678                                         | exception | None   | 44, The content of the input data is not valid. |
+            | unprotect | superuser | datetime     | 1906-12-02 13:11:09 400445311712345678                                         | exception | None   | 44, The content of the input data is not valid. |
+            | reprotect | superuser | datetime     | 1906-12-02 13:11:09 400445311712345678                                         | exception | None   | 44, The content of the input data is not valid. |
             | protect   | superuser | datetime     | 1906:12:02                                                                     | exception | None   | 44, The content of the input data is not valid. |
             | unprotect | superuser | datetime     | 1906:12:02                                                                     | exception | None   | 44, The content of the input data is not valid. |
             | reprotect | superuser | datetime     | 1906:12:02                                                                     | exception | None   | 44, The content of the input data is not valid. |
