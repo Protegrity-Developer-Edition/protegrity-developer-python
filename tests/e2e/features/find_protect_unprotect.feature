@@ -61,7 +61,7 @@ Feature: Sensitive Data Protection using protegrity_developer_python
             """
         Then the output should be protected as follows:
             """
-            [PERSON]SZvn mLb[/PERSON] (SSN: [SOCIAL_SECURITY_ID]616-16-2210[/SOCIAL_SECURITY_ID], 📧: [EMAIL_ADDRESS]EVsQ.Tv0@example.com[/EMAIL_ADDRESS]) from [LOCATION]OuT bQaK[/LOCATION] transferred ¥5000 to 王小明 (身份证号: 110101199003078888, 📱: [LOCATION]+Tw[/LOCATION] 138 0000 0000) in 北京市朝阳区. Meanwhile, [PERSON]5dDíF JhjGá3GK[/PERSON] (DNI: [NATIONAL_ID]92878314R[/NATIONAL_ID], 📞: [PHONE_NUMBER]+50 386 425 052)[/PHONE_NUMBER] from [LOCATION]Nx2Jzq[/LOCATION] updated her IBAN to [BANK_ACCOUNT]ES60 1851 6679 8134 4653 8175[/BANK_ACCOUNT]. 🏦💳 The transaction was logged at [DATETIME]3175-06-15[/DATETIME] 14:30:00 UTC. Everything looked normal until 🚨 a suspicious login was detected from IP [IP_ADDRESS]vk5.y8P.d.VP1[/IP_ADDRESS]. Stay safe online! 🔐🌐
+            John Doe (SSN: [SOCIAL_SECURITY_ID]616-16-2210[/SOCIAL_SECURITY_ID], 📧: [EMAIL_ADDRESS]EVsQ.Tv0@example.com[/EMAIL_ADDRESS]) from New York transferred ¥5000 to 王小明 (身份证号: 110101199003078888, 📱: +86 138 0000 0000) in 北京市朝阳区. Meanwhile, María González (DNI: [TAX_ID]95805408Z[/TAX_ID], 📞: [PHONE_NUMBER]+50 386 425 052)[/PHONE_NUMBER] from [LOCATION]Nx2Jzq[/LOCATION] updated her IBAN to [BANK_ACCOUNT]ES60 1851 6679 8134 4653 8175[/BANK_ACCOUNT]. 🏦💳 The transaction was logged at 2025-07-21 14:30:00 UTC. Everything looked normal until 🚨 a suspicious login was detected from IP [IP_ADDRESS]vk5.y8P.d.VP1[/IP_ADDRESS]. Stay safe online! 🔐🌐
             """
         When the user invokes the find_and_unprotect function with the protected output
         Then the unprotected output should match the original input

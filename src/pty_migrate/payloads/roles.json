@@ -1,0 +1,32 @@
+[
+    {
+        "name": "Superuser",
+        "description": "The role can perform any protect and unprotect operation. The role has been made available for testing only. We strongly advise against creating superuser roles in your environments.",
+        "mode": "MANUAL",
+        "allowAll": false
+    },
+    {
+        "name": "Admin",
+        "description": "The role can protect all data but cannot unprotect. Upon an unprotection attempt, protected values will be displayed.",
+        "mode": "MANUAL",
+        "allowAll": false
+    },
+    {
+        "name": "Finance",
+        "description": "The role can unprotect all PII and PCI data. The role cannot protect any data. When attempting to unprotect data without authorization, null value will be displayed.",
+        "mode": "MANUAL",
+        "allowAll": false
+    },
+    {
+        "name": "Marketing",
+        "description": "The role can unprotect some PII data that is required for analytical research and campaign outreach. When attempting to unprotect data without authorization, null value will be displayed. The role cannot protect any data.",
+        "mode": "MANUAL",
+        "allowAll": false
+    },
+    {
+        "name": "HR",
+        "description": "The role can unprotect all PII data but cannot view any PCI data. When attempting to unprotect data without authorization, null value will be displayed. The role cannot protect any data.",
+        "mode": "MANUAL",
+        "allowAll": false
+    }
+]

@@ -1,0 +1,342 @@
+[
+  {
+    "name": "name",
+    "description": "Protect or unprotect name of a person",
+    "alphabeticToken": {
+      "tokenizer": "SLT_2_3",
+      "fromLeft": 0,
+      "fromRight": 0,
+      "lengthPreserving": true
+    }
+  },
+  {
+    "name": "name_de",
+    "description": "Protect or unprotect name of a person in German language",
+    "unicodeGen2Token": {
+      "tokenizer": "SLT_X_1",
+      "alphabetUid": "3",
+      "fromLeft": 0,
+      "fromRight": 0,
+      "lengthPreserving": true
+    }
+  },
+  {
+    "name": "name_fr",
+    "description": "Protect or unprotect name of a person in French language",
+    "unicodeGen2Token": {
+      "tokenizer": "SLT_X_1",
+      "alphabetUid": "4",
+      "fromLeft": 0,
+      "fromRight": 0,
+      "lengthPreserving": true
+    }
+  },
+  {
+    "name": "address",
+    "description": "Protect or unprotect an address",
+    "alphaNumericToken": {
+      "tokenizer": "SLT_2_3",
+      "fromLeft": 0,
+      "fromRight": 0,
+      "lengthPreserving": true
+    }
+  },
+  {
+    "name": "address_de",
+    "description": "Protect or unprotect an address in German language",
+    "unicodeGen2Token": {
+      "tokenizer": "SLT_X_1",
+      "alphabetUid": "1",
+      "fromLeft": 0,
+      "fromRight": 0,
+      "lengthPreserving": true
+    }
+  },
+  {
+    "name": "address_fr",
+    "description": "Protect or unprotect an address in French language",
+    "unicodeGen2Token": {
+      "tokenizer": "SLT_X_1",
+      "alphabetUid": "2",
+      "fromLeft": 0,
+      "fromRight": 0,
+      "lengthPreserving": true
+    }
+  },
+  {
+    "name": "city",
+    "description": "Protect or unprotect a town or city",
+    "alphabeticToken": {
+      "tokenizer": "SLT_2_3",
+      "fromLeft": 0,
+      "fromRight": 0,
+      "lengthPreserving": true
+    }
+  },
+  {
+    "name": "city_de",
+    "description": "Protect or unprotect a town or city name in German language",
+    "unicodeGen2Token": {
+      "tokenizer": "SLT_X_1",
+      "alphabetUid": "3",
+      "fromLeft": 0,
+      "fromRight": 0,
+      "lengthPreserving": true
+    }
+  },
+  {
+    "name": "city_fr",
+    "description": "Protect or unprotect a town or city name in French language",
+    "unicodeGen2Token": {
+      "tokenizer": "SLT_X_1",
+      "alphabetUid": "4",
+      "fromLeft": 0,
+      "fromRight": 0,
+      "lengthPreserving": true
+    }
+  },
+  {
+    "name": "postcode",
+    "description": "Protect or unprotect a postal code with digits and chatacters",
+    "alphaNumericToken": {
+      "tokenizer": "SLT_2_3",
+      "fromLeft": 0,
+      "fromRight": 0,
+      "lengthPreserving": true,
+      "preservePosition": true,
+      "preserveCase": true
+    }
+  },
+  {
+    "name": "zipcode",
+    "description": "Protect or unprotect a postal code with digits only",
+    "numericToken": {
+      "tokenizer": "SLT_2_6",
+      "fromLeft": 0,
+      "fromRight": 0,
+      "lengthPreserving": true
+    }
+  },
+  {
+    "name": "phone",
+    "description": "Protect or unprotect a phone number",
+    "numericToken": {
+      "tokenizer": "SLT_2_6",
+      "fromLeft": 0,
+      "fromRight": 0,
+      "lengthPreserving": true
+    }
+  },
+  {
+    "name": "email",
+    "description": "Protect or unprotect an email",
+    "emailToken": {
+      "tokenizer": "SLT_2_3",
+      "lengthPreserving": true
+    }
+  },
+  {
+    "name": "datetime",
+    "description": "Protect or unprotect all components of a datetime string date, month, year and time",
+    "dateTimeToken": {
+      "tokenizer": "SLT_8_DATETIME"
+    }
+  },
+  {
+    "name": "datetime_yc",
+    "description": "Protect or unprotect a datetime string. Year will be in clear.",
+    "dateTimeToken": {
+      "tokenizer": "SLT_8_DATETIME",
+      "dateInClear": "YEAR"
+    }
+  },
+  {
+    "name": "int",
+    "description": "Protect or unprotect a 4-byte integer string",
+    "integerToken": {
+      "tokenizer": "SLT_1_3"
+    }
+  },
+  {
+    "name": "nin",
+    "description": "Protect or unprotect a National Insurance Number UK",
+    "alphaNumericToken": {
+      "tokenizer": "SLT_2_3",
+      "fromLeft": 0,
+      "fromRight": 0,
+      "lengthPreserving": true,
+      "preservePosition": true,
+      "preserveCase": true
+    }
+  },
+  {
+    "name": "ssn",
+    "description": "Protect or unprotect a Social Security Number US",
+    "numericToken": {
+      "tokenizer": "SLT_2_6",
+      "fromLeft": 0,
+      "fromRight": 0,
+      "lengthPreserving": true
+    }
+  },
+  {
+    "name": "ccn",
+    "description": "Protect or unprotect a Credit Card Number",
+    "creditCardToken": {
+      "tokenizer": "SLT_2_6",
+      "fromLeft": 0,
+      "fromRight": 0
+    }
+  },
+  {
+    "name": "ccn_bin",
+    "description": "Protect or unprotect a Credit Card Number. Leaves 8-digit BIN in the clear.",
+    "creditCardToken": {
+      "tokenizer": "SLT_2_6",
+      "fromLeft": 8,
+      "fromRight": 0
+    }
+  },
+  {
+    "name": "passport",
+    "description": "Protect or unprotect a passport number",
+    "alphaNumericToken": {
+      "tokenizer": "SLT_2_3",
+      "fromLeft": 0,
+      "fromRight": 0,
+      "lengthPreserving": true,
+      "preservePosition": true,
+      "preserveCase": true
+    }
+  },
+  {
+    "name": "iban",
+    "description": "Protect or unprotect an Internation Banking Account Number",
+    "alphaNumericToken": {
+      "tokenizer": "SLT_2_3",
+      "fromLeft": 0,
+      "fromRight": 0,
+      "lengthPreserving": true,
+      "preservePosition": true,
+      "preserveCase": true
+    }
+  },
+  {
+    "name": "iban_cc",
+    "description": "Protect or unprotect an Internation Banking Account Number. Leaves letters in the clear.",
+    "numericToken": {
+      "tokenizer": "SLT_2_6",
+      "fromLeft": 0,
+      "fromRight": 0,
+      "lengthPreserving": true
+    }
+  },
+  {
+    "name": "string",
+    "description": "Protect or unprotect a string",
+    "alphaNumericToken": {
+      "tokenizer": "SLT_2_3",
+      "fromLeft": 0,
+      "fromRight": 0,
+      "lengthPreserving": true
+    }
+  },
+  {
+    "name": "number",
+    "description": "Protect or unprotect a number",
+    "numericToken": {
+      "tokenizer": "SLT_2_6",
+      "fromLeft": 0,
+      "fromRight": 0,
+      "lengthPreserving": true
+    }
+  },
+  {
+    "name": "text",
+    "description": "Protect or unprotect text using encryption",
+    "aes256CbcEnc": {}
+  },
+  {
+    "name": "fpe_numeric",
+    "description": "FPE for numeric data",
+    "numericFpe": {
+      "fromLeft": 0,
+      "fromRight": 0,
+      "allowShort": "NOWITHERROR",
+      "minLength": 2,
+      "tweakMode": "EXT_INPUT"
+    }
+  },
+  {
+    "name": "fpe_alpha",
+    "description": "FPE using Alpha as plaintext alphabet",
+    "alphabeticFpe": {
+      "fromLeft": 0,
+      "fromRight": 0,
+      "allowShort": "NOWITHERROR",
+      "minLength": 2,
+      "tweakMode": "EXT_INPUT"
+    }
+  },
+  {
+    "name": "fpe_alphanumeric",
+    "description": "FPE using Alphanumeric as plaintext alphabet",
+    "alphaNumericFpe": {
+      "fromLeft": 0,
+      "fromRight": 0,
+      "allowShort": "NOWITHERROR",
+      "minLength": 2,
+      "tweakMode": "EXT_INPUT"
+    }
+  },
+  {
+    "name": "fpe_latin1_alpha",
+    "description": "FPE using Basic Latin and Latin-1 Supplement Alpha",
+    "unicodeBasicLatinAlphabeticFpe": {
+      "fromLeft": 0,
+      "fromRight": 0,
+      "allowShort": "NOWITHERROR",
+      "minLength": 2,
+      "tweakMode": "EXT_INPUT"
+    }
+  },
+  {
+    "name": "fpe_latin1_alphanumeric",
+    "description": "FPE using Basic Latin and Latin-1 Supplement Alphanumeric",
+    "unicodeBasicLatinAlphaNumericFpe": {
+      "fromLeft": 0,
+      "fromRight": 0,
+      "allowShort": "NOWITHERROR",
+      "minLength": 2,
+      "tweakMode": "EXT_INPUT"
+    }
+  },
+  {
+    "name": "mask",
+    "description": "Mask all the characters",
+    "noEnc": {
+      "maskUid": "1"
+    }
+  },
+  {
+    "name": "no_encryption",
+    "description": "No encryption data element",
+    "noEnc": {}
+  },
+  {
+    "name": "short",
+    "description": "Protect or unprotect a 2-byte integer string",
+    "integerToken": {
+      "tokenizer": "SLT_1_3",
+      "integerSize": "SHORT"
+    }
+  },
+  {
+    "name": "long",
+    "description": "Protect or unprotect an 8-byte integer string",
+    "integerToken": {
+      "tokenizer": "SLT_1_3",
+      "integerSize": "LONG"
+    }
+  }
+]

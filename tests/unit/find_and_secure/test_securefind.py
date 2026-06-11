@@ -45,24 +45,27 @@ def test_discover_returns_json(mock_post):
     assert "PHONE" in result
 
 
-@patch("protegrity_developer_python.utils.discover.requests.post")
+@patch("protegrity_developer_python.utils.transform.requests.post")
 def test_find_and_redact_redaction(mock_post):
     mock_post.return_value.status_code = 200
-    mock_post.return_value.json.return_value = {"classifications": mock_response}
+    mock_post.return_value.json.return_value = {
+        "transform": {"text": "Contact me at [EMAIL_ADDRESS] or call [PHONE_NUMBER]."}
+    }
     protegrity_developer_python.configure(method="redact")
     result = protegrity_developer_python.find_and_redact(sample_text)
     assert "[EMAIL_ADDRESS]" in result
     assert "[PHONE_NUMBER]" in result
 
 
-@patch("protegrity_developer_python.utils.discover.requests.post")
+@patch("protegrity_developer_python.utils.transform.requests.post")
 def test_find_and_redact_masking(mock_post):
     mock_post.return_value.status_code = 200
-    mock_post.return_value.json.return_value = {"classifications": mock_response}
+    mock_post.return_value.json.return_value = {
+        "transform": {"text": "Contact me at [EMAIL] or call [PHONE]."},
+        "classifications": mock_response,
+    }
     protegrity_developer_python.configure(method="mask", masking_char="#")
     result = protegrity_developer_python.find_and_redact(sample_text)
     assert "[EMAIL_ADDRESS]" not in result
-    assert "[PHONE_NUMBER]" not in result
-    assert "#################" in result or "############" in result
     assert "[PHONE_NUMBER]" not in result
     assert "#################" in result or "############" in result

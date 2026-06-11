@@ -1,0 +1,7 @@
+[
+    {
+        "name": "DevEdition",
+        "description": "Datastore for Protegrity Developer Edition.",
+        "default": true
+    }
+]

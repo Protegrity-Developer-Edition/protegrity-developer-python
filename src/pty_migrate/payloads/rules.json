@@ -1,0 +1,1639 @@
+[
+    {
+        "role": "1",
+        "dataElement": "1",
+        "permission": {
+            "access": {
+                "protect": true,
+                "reProtect": true,
+                "unProtect": true
+            }
+        }
+    },
+    {
+        "role": "2",
+        "dataElement": "1",
+        "noAccessOperation": "PROTECTED_VALUE",
+        "permission": {
+            "access": {
+                "protect": true,
+                "reProtect": true,
+                "unProtect": false
+            }
+        }
+    },
+    {
+        "role": "3",
+        "dataElement": "1",
+        "permission": {
+            "access": {
+                "protect": false,
+                "reProtect": false,
+                "unProtect": true
+            }
+        }
+    },
+    {
+        "role": "4",
+        "dataElement": "1",
+        "permission": {
+            "access": {
+                "protect": false,
+                "reProtect": false,
+                "unProtect": true
+            }
+        }
+    },
+    {
+        "role": "5",
+        "dataElement": "1",
+        "permission": {
+            "access": {
+                "protect": false,
+                "reProtect": false,
+                "unProtect": true
+            }
+        }
+    },
+    {
+        "role": "1",
+        "dataElement": "2",
+        "permission": {
+            "access": {
+                "protect": true,
+                "reProtect": true,
+                "unProtect": true
+            }
+        }
+    },
+    {
+        "role": "2",
+        "dataElement": "2",
+        "noAccessOperation": "PROTECTED_VALUE",
+        "permission": {
+            "access": {
+                "protect": true,
+                "reProtect": true,
+                "unProtect": false
+            }
+        }
+    },
+    {
+        "role": "3",
+        "dataElement": "2",
+        "permission": {
+            "access": {
+                "protect": false,
+                "reProtect": false,
+                "unProtect": true
+            }
+        }
+    },
+    {
+        "role": "4",
+        "dataElement": "2",
+        "permission": {
+            "access": {
+                "protect": false,
+                "reProtect": false,
+                "unProtect": true
+            }
+        }
+    },
+    {
+        "role": "5",
+        "dataElement": "2",
+        "permission": {
+            "access": {
+                "protect": false,
+                "reProtect": false,
+                "unProtect": true
+            }
+        }
+    },
+    {
+        "role": "1",
+        "dataElement": "3",
+        "permission": {
+            "access": {
+                "protect": true,
+                "reProtect": true,
+                "unProtect": true
+            }
+        }
+    },
+    {
+        "role": "2",
+        "dataElement": "3",
+        "noAccessOperation": "PROTECTED_VALUE",
+        "permission": {
+            "access": {
+                "protect": true,
+                "reProtect": true,
+                "unProtect": false
+            }
+        }
+    },
+    {
+        "role": "3",
+        "dataElement": "3",
+        "permission": {
+            "access": {
+                "protect": false,
+                "reProtect": false,
+                "unProtect": true
+            }
+        }
+    },
+    {
+        "role": "4",
+        "dataElement": "3",
+        "permission": {
+            "access": {
+                "protect": false,
+                "reProtect": false,
+                "unProtect": true
+            }
+        }
+    },
+    {
+        "role": "5",
+        "dataElement": "3",
+        "permission": {
+            "access": {
+                "protect": false,
+                "reProtect": false,
+                "unProtect": true
+            }
+        }
+    },
+    {
+        "role": "1",
+        "dataElement": "7",
+        "permission": {
+            "access": {
+                "protect": true,
+                "reProtect": true,
+                "unProtect": true
+            }
+        }
+    },
+    {
+        "role": "2",
+        "dataElement": "7",
+        "noAccessOperation": "PROTECTED_VALUE",
+        "permission": {
+            "access": {
+                "protect": true,
+                "reProtect": true,
+                "unProtect": false
+            }
+        }
+    },
+    {
+        "role": "3",
+        "dataElement": "7",
+        "permission": {
+            "access": {
+                "protect": false,
+                "reProtect": false,
+                "unProtect": true
+            }
+        }
+    },
+    {
+        "role": "4",
+        "dataElement": "7",
+        "permission": {
+            "access": {
+                "protect": false,
+                "reProtect": false,
+                "unProtect": true
+            }
+        }
+    },
+    {
+        "role": "5",
+        "dataElement": "7",
+        "permission": {
+            "access": {
+                "protect": false,
+                "reProtect": false,
+                "unProtect": true
+            }
+        }
+    },
+    {
+        "role": "1",
+        "dataElement": "8",
+        "permission": {
+            "access": {
+                "protect": true,
+                "reProtect": true,
+                "unProtect": true
+            }
+        }
+    },
+    {
+        "role": "2",
+        "dataElement": "8",
+        "noAccessOperation": "PROTECTED_VALUE",
+        "permission": {
+            "access": {
+                "protect": true,
+                "reProtect": true,
+                "unProtect": false
+            }
+        }
+    },
+    {
+        "role": "3",
+        "dataElement": "8",
+        "permission": {
+            "access": {
+                "protect": false,
+                "reProtect": false,
+                "unProtect": true
+            }
+        }
+    },
+    {
+        "role": "4",
+        "dataElement": "8",
+        "permission": {
+            "access": {
+                "protect": false,
+                "reProtect": false,
+                "unProtect": true
+            }
+        }
+    },
+    {
+        "role": "5",
+        "dataElement": "8",
+        "permission": {
+            "access": {
+                "protect": false,
+                "reProtect": false,
+                "unProtect": true
+            }
+        }
+    },
+    {
+        "role": "1",
+        "dataElement": "9",
+        "permission": {
+            "access": {
+                "protect": true,
+                "reProtect": true,
+                "unProtect": true
+            }
+        }
+    },
+    {
+        "role": "2",
+        "dataElement": "9",
+        "noAccessOperation": "PROTECTED_VALUE",
+        "permission": {
+            "access": {
+                "protect": true,
+                "reProtect": true,
+                "unProtect": false
+            }
+        }
+    },
+    {
+        "role": "3",
+        "dataElement": "9",
+        "permission": {
+            "access": {
+                "protect": false,
+                "reProtect": false,
+                "unProtect": true
+            }
+        }
+    },
+    {
+        "role": "4",
+        "dataElement": "9",
+        "permission": {
+            "access": {
+                "protect": false,
+                "reProtect": false,
+                "unProtect": true
+            }
+        }
+    },
+    {
+        "role": "5",
+        "dataElement": "9",
+        "permission": {
+            "access": {
+                "protect": false,
+                "reProtect": false,
+                "unProtect": true
+            }
+        }
+    },
+    {
+        "role": "1",
+        "dataElement": "10",
+        "permission": {
+            "access": {
+                "protect": true,
+                "reProtect": true,
+                "unProtect": true
+            }
+        }
+    },
+    {
+        "role": "2",
+        "dataElement": "10",
+        "noAccessOperation": "PROTECTED_VALUE",
+        "permission": {
+            "access": {
+                "protect": true,
+                "reProtect": true,
+                "unProtect": false
+            }
+        }
+    },
+    {
+        "role": "3",
+        "dataElement": "10",
+        "permission": {
+            "access": {
+                "protect": false,
+                "reProtect": false,
+                "unProtect": true
+            }
+        }
+    },
+    {
+        "role": "4",
+        "dataElement": "10",
+        "permission": {
+            "access": {
+                "protect": false,
+                "reProtect": false,
+                "unProtect": true
+            }
+        }
+    },
+    {
+        "role": "5",
+        "dataElement": "10",
+        "permission": {
+            "access": {
+                "protect": false,
+                "reProtect": false,
+                "unProtect": true
+            }
+        }
+    },
+    {
+        "role": "1",
+        "dataElement": "11",
+        "permission": {
+            "access": {
+                "protect": true,
+                "reProtect": true,
+                "unProtect": true
+            }
+        }
+    },
+    {
+        "role": "2",
+        "dataElement": "11",
+        "noAccessOperation": "PROTECTED_VALUE",
+        "permission": {
+            "access": {
+                "protect": true,
+                "reProtect": true,
+                "unProtect": false
+            }
+        }
+    },
+    {
+        "role": "3",
+        "dataElement": "11",
+        "permission": {
+            "access": {
+                "protect": false,
+                "reProtect": false,
+                "unProtect": true
+            }
+        }
+    },
+    {
+        "role": "4",
+        "dataElement": "11",
+        "permission": {
+            "access": {
+                "protect": false,
+                "reProtect": false,
+                "unProtect": true
+            }
+        }
+    },
+    {
+        "role": "5",
+        "dataElement": "11",
+        "permission": {
+            "access": {
+                "protect": false,
+                "reProtect": false,
+                "unProtect": true
+            }
+        }
+    },
+    {
+        "role": "1",
+        "dataElement": "13",
+        "permission": {
+            "access": {
+                "protect": true,
+                "reProtect": true,
+                "unProtect": true
+            }
+        }
+    },
+    {
+        "role": "2",
+        "dataElement": "13",
+        "noAccessOperation": "PROTECTED_VALUE",
+        "permission": {
+            "access": {
+                "protect": true,
+                "reProtect": true,
+                "unProtect": false
+            }
+        }
+    },
+    {
+        "role": "3",
+        "dataElement": "13",
+        "permission": {
+            "access": {
+                "protect": false,
+                "reProtect": false,
+                "unProtect": true
+            }
+        }
+    },
+    {
+        "role": "4",
+        "dataElement": "13",
+        "permission": {
+            "access": {
+                "protect": false,
+                "reProtect": false,
+                "unProtect": true
+            }
+        }
+    },
+    {
+        "role": "5",
+        "dataElement": "13",
+        "permission": {
+            "access": {
+                "protect": false,
+                "reProtect": false,
+                "unProtect": true
+            }
+        }
+    },
+    {
+        "role": "1",
+        "dataElement": "4",
+        "permission": {
+            "access": {
+                "protect": true,
+                "reProtect": true,
+                "unProtect": true
+            }
+        }
+    },
+    {
+        "role": "2",
+        "dataElement": "4",
+        "noAccessOperation": "PROTECTED_VALUE",
+        "permission": {
+            "access": {
+                "protect": true,
+                "reProtect": true,
+                "unProtect": false
+            }
+        }
+    },
+    {
+        "role": "3",
+        "dataElement": "4",
+        "permission": {
+            "access": {
+                "protect": false,
+                "reProtect": false,
+                "unProtect": true
+            }
+        }
+    },
+    {
+        "role": "5",
+        "dataElement": "4",
+        "permission": {
+            "access": {
+                "protect": false,
+                "reProtect": false,
+                "unProtect": true
+            }
+        }
+    },
+    {
+        "role": "1",
+        "dataElement": "5",
+        "permission": {
+            "access": {
+                "protect": true,
+                "reProtect": true,
+                "unProtect": true
+            }
+        }
+    },
+    {
+        "role": "2",
+        "dataElement": "5",
+        "noAccessOperation": "PROTECTED_VALUE",
+        "permission": {
+            "access": {
+                "protect": true,
+                "reProtect": true,
+                "unProtect": false
+            }
+        }
+    },
+    {
+        "role": "3",
+        "dataElement": "5",
+        "permission": {
+            "access": {
+                "protect": false,
+                "reProtect": false,
+                "unProtect": true
+            }
+        }
+    },
+    {
+        "role": "5",
+        "dataElement": "5",
+        "permission": {
+            "access": {
+                "protect": false,
+                "reProtect": false,
+                "unProtect": true
+            }
+        }
+    },
+    {
+        "role": "1",
+        "dataElement": "6",
+        "permission": {
+            "access": {
+                "protect": true,
+                "reProtect": true,
+                "unProtect": true
+            }
+        }
+    },
+    {
+        "role": "2",
+        "dataElement": "6",
+        "noAccessOperation": "PROTECTED_VALUE",
+        "permission": {
+            "access": {
+                "protect": true,
+                "reProtect": true,
+                "unProtect": false
+            }
+        }
+    },
+    {
+        "role": "3",
+        "dataElement": "6",
+        "permission": {
+            "access": {
+                "protect": false,
+                "reProtect": false,
+                "unProtect": true
+            }
+        }
+    },
+    {
+        "role": "5",
+        "dataElement": "6",
+        "permission": {
+            "access": {
+                "protect": false,
+                "reProtect": false,
+                "unProtect": true
+            }
+        }
+    },
+    {
+        "role": "1",
+        "dataElement": "19",
+        "permission": {
+            "access": {
+                "protect": true,
+                "reProtect": true,
+                "unProtect": true
+            }
+        }
+    },
+    {
+        "role": "2",
+        "dataElement": "19",
+        "noAccessOperation": "PROTECTED_VALUE",
+        "permission": {
+            "access": {
+                "protect": true,
+                "reProtect": true,
+                "unProtect": false
+            }
+        }
+    },
+    {
+        "role": "3",
+        "dataElement": "19",
+        "permission": {
+            "access": {
+                "protect": false,
+                "reProtect": false,
+                "unProtect": true
+            }
+        }
+    },
+    {
+        "role": "5",
+        "dataElement": "19",
+        "mask": "2",
+        "permission": {
+            "access": {
+                "protect": false,
+                "reProtect": false,
+                "unProtect": true
+            }
+        }
+    },
+    {
+        "role": "1",
+        "dataElement": "20",
+        "permission": {
+            "access": {
+                "protect": true,
+                "reProtect": true,
+                "unProtect": true
+            }
+        }
+    },
+    {
+        "role": "2",
+        "dataElement": "20",
+        "noAccessOperation": "PROTECTED_VALUE",
+        "permission": {
+            "access": {
+                "protect": true,
+                "reProtect": true,
+                "unProtect": false
+            }
+        }
+    },
+    {
+        "role": "3",
+        "dataElement": "20",
+        "permission": {
+            "access": {
+                "protect": false,
+                "reProtect": false,
+                "unProtect": true
+            }
+        }
+    },
+    {
+        "role": "5",
+        "dataElement": "20",
+        "mask": "2",
+        "permission": {
+            "access": {
+                "protect": false,
+                "reProtect": false,
+                "unProtect": true
+            }
+        }
+    },
+    {
+        "role": "1",
+        "dataElement": "22",
+        "permission": {
+            "access": {
+                "protect": true,
+                "reProtect": true,
+                "unProtect": true
+            }
+        }
+    },
+    {
+        "role": "2",
+        "dataElement": "22",
+        "noAccessOperation": "PROTECTED_VALUE",
+        "permission": {
+            "access": {
+                "protect": true,
+                "reProtect": true,
+                "unProtect": false
+            }
+        }
+    },
+    {
+        "role": "3",
+        "dataElement": "22",
+        "permission": {
+            "access": {
+                "protect": false,
+                "reProtect": false,
+                "unProtect": true
+            }
+        }
+    },
+    {
+        "role": "5",
+        "dataElement": "22",
+        "mask": "1",
+        "permission": {
+            "access": {
+                "protect": false,
+                "reProtect": false,
+                "unProtect": true
+            }
+        }
+    },
+    {
+        "role": "1",
+        "dataElement": "23",
+        "permission": {
+            "access": {
+                "protect": true,
+                "reProtect": true,
+                "unProtect": true
+            }
+        }
+    },
+    {
+        "role": "2",
+        "dataElement": "23",
+        "noAccessOperation": "PROTECTED_VALUE",
+        "permission": {
+            "access": {
+                "protect": true,
+                "reProtect": true,
+                "unProtect": false
+            }
+        }
+    },
+    {
+        "role": "3",
+        "dataElement": "23",
+        "permission": {
+            "access": {
+                "protect": false,
+                "reProtect": false,
+                "unProtect": true
+            }
+        }
+    },
+    {
+        "role": "5",
+        "dataElement": "23",
+        "mask": "2",
+        "permission": {
+            "access": {
+                "protect": false,
+                "reProtect": false,
+                "unProtect": true
+            }
+        }
+    },
+    {
+        "role": "1",
+        "dataElement": "12",
+        "permission": {
+            "access": {
+                "protect": true,
+                "reProtect": true,
+                "unProtect": true
+            }
+        }
+    },
+    {
+        "role": "2",
+        "dataElement": "12",
+        "noAccessOperation": "PROTECTED_VALUE",
+        "permission": {
+            "access": {
+                "protect": true,
+                "reProtect": true,
+                "unProtect": false
+            }
+        }
+    },
+    {
+        "role": "3",
+        "dataElement": "12",
+        "permission": {
+            "access": {
+                "protect": true,
+                "reProtect": true,
+                "unProtect": false
+            }
+        }
+    },
+    {
+        "role": "4",
+        "dataElement": "12",
+        "permission": {
+            "access": {
+                "protect": true,
+                "reProtect": true,
+                "unProtect": false
+            }
+        }
+    },
+    {
+        "role": "5",
+        "dataElement": "12",
+        "permission": {
+            "access": {
+                "protect": true,
+                "reProtect": true,
+                "unProtect": false
+            }
+        }
+    },
+    {
+        "role": "1",
+        "dataElement": "17",
+        "permission": {
+            "access": {
+                "protect": true,
+                "reProtect": true,
+                "unProtect": true
+            }
+        }
+    },
+    {
+        "role": "2",
+        "dataElement": "17",
+        "noAccessOperation": "PROTECTED_VALUE",
+        "permission": {
+            "access": {
+                "protect": true,
+                "reProtect": true,
+                "unProtect": false
+            }
+        }
+    },
+    {
+        "role": "3",
+        "dataElement": "17",
+        "permission": {
+            "access": {
+                "protect": true,
+                "reProtect": true,
+                "unProtect": false
+            }
+        }
+    },
+    {
+        "role": "4",
+        "dataElement": "17",
+        "permission": {
+            "access": {
+                "protect": true,
+                "reProtect": true,
+                "unProtect": false
+            }
+        }
+    },
+    {
+        "role": "5",
+        "dataElement": "17",
+        "permission": {
+            "access": {
+                "protect": true,
+                "reProtect": true,
+                "unProtect": false
+            }
+        }
+    },
+    {
+        "role": "1",
+        "dataElement": "18",
+        "permission": {
+            "access": {
+                "protect": true,
+                "reProtect": true,
+                "unProtect": true
+            }
+        }
+    },
+    {
+        "role": "2",
+        "dataElement": "18",
+        "noAccessOperation": "PROTECTED_VALUE",
+        "permission": {
+            "access": {
+                "protect": true,
+                "reProtect": true,
+                "unProtect": false
+            }
+        }
+    },
+    {
+        "role": "3",
+        "dataElement": "18",
+        "permission": {
+            "access": {
+                "protect": true,
+                "reProtect": true,
+                "unProtect": false
+            }
+        }
+    },
+    {
+        "role": "4",
+        "dataElement": "18",
+        "permission": {
+            "access": {
+                "protect": true,
+                "reProtect": true,
+                "unProtect": false
+            }
+        }
+    },
+    {
+        "role": "5",
+        "dataElement": "18",
+        "permission": {
+            "access": {
+                "protect": true,
+                "reProtect": true,
+                "unProtect": false
+            }
+        }
+    },
+    {
+        "role": "1",
+        "dataElement": "21",
+        "permission": {
+            "access": {
+                "protect": true,
+                "reProtect": true,
+                "unProtect": true
+            }
+        }
+    },
+    {
+        "role": "2",
+        "dataElement": "21",
+        "noAccessOperation": "PROTECTED_VALUE",
+        "permission": {
+            "access": {
+                "protect": true,
+                "reProtect": true,
+                "unProtect": false
+            }
+        }
+    },
+    {
+        "role": "3",
+        "dataElement": "21",
+        "permission": {
+            "access": {
+                "protect": true,
+                "reProtect": true,
+                "unProtect": false
+            }
+        }
+    },
+    {
+        "role": "4",
+        "dataElement": "21",
+        "permission": {
+            "access": {
+                "protect": true,
+                "reProtect": true,
+                "unProtect": false
+            }
+        }
+    },
+    {
+        "role": "5",
+        "dataElement": "21",
+        "permission": {
+            "access": {
+                "protect": true,
+                "reProtect": true,
+                "unProtect": false
+            }
+        }
+    },
+    {
+        "role": "1",
+        "dataElement": "14",
+        "permission": {
+            "access": {
+                "protect": true,
+                "reProtect": true,
+                "unProtect": true
+            }
+        }
+    },
+    {
+        "role": "2",
+        "dataElement": "14",
+        "noAccessOperation": "PROTECTED_VALUE",
+        "permission": {
+            "access": {
+                "protect": true,
+                "reProtect": true,
+                "unProtect": false
+            }
+        }
+    },
+    {
+        "role": "4",
+        "dataElement": "14",
+        "permission": {
+            "access": {
+                "protect": false,
+                "reProtect": false,
+                "unProtect": true
+            }
+        }
+    },
+    {
+        "role": "5",
+        "dataElement": "14",
+        "permission": {
+            "access": {
+                "protect": false,
+                "reProtect": false,
+                "unProtect": true
+            }
+        }
+    },
+    {
+        "role": "1",
+        "dataElement": "15",
+        "permission": {
+            "access": {
+                "protect": true,
+                "reProtect": true,
+                "unProtect": true
+            }
+        }
+    },
+    {
+        "role": "2",
+        "dataElement": "15",
+        "noAccessOperation": "PROTECTED_VALUE",
+        "permission": {
+            "access": {
+                "protect": true,
+                "reProtect": true,
+                "unProtect": false
+            }
+        }
+    },
+    {
+        "role": "4",
+        "dataElement": "15",
+        "permission": {
+            "access": {
+                "protect": false,
+                "reProtect": false,
+                "unProtect": true
+            }
+        }
+    },
+    {
+        "role": "5",
+        "dataElement": "15",
+        "permission": {
+            "access": {
+                "protect": false,
+                "reProtect": false,
+                "unProtect": true
+            }
+        }
+    },
+    {
+        "role": "1",
+        "dataElement": "16",
+        "permission": {
+            "access": {
+                "protect": true,
+                "reProtect": true,
+                "unProtect": true
+            }
+        }
+    },
+    {
+        "role": "2",
+        "dataElement": "16",
+        "noAccessOperation": "PROTECTED_VALUE",
+        "permission": {
+            "access": {
+                "protect": true,
+                "reProtect": true,
+                "unProtect": false
+            }
+        }
+    },
+    {
+        "role": "4",
+        "dataElement": "16",
+        "permission": {
+            "access": {
+                "protect": false,
+                "reProtect": false,
+                "unProtect": true
+            }
+        }
+    },
+    {
+        "role": "5",
+        "dataElement": "16",
+        "permission": {
+            "access": {
+                "protect": false,
+                "reProtect": false,
+                "unProtect": true
+            }
+        }
+    },
+    {
+        "role": "1",
+        "dataElement": "24",
+        "permission": {
+            "access": {
+                "protect": true,
+                "reProtect": true,
+                "unProtect": true
+            }
+        }
+    },
+    {
+        "role": "2",
+        "dataElement": "24",
+        "noAccessOperation": "PROTECTED_VALUE",
+        "permission": {
+            "access": {
+                "protect": true,
+                "reProtect": true,
+                "unProtect": false
+            }
+        }
+    },
+    {
+        "role": "4",
+        "dataElement": "24",
+        "permission": {
+            "access": {
+                "protect": false,
+                "reProtect": false,
+                "unProtect": true
+            }
+        }
+    },
+    {
+        "role": "5",
+        "dataElement": "24",
+        "permission": {
+            "access": {
+                "protect": false,
+                "reProtect": false,
+                "unProtect": true
+            }
+        }
+    },
+    {
+        "role": "1",
+        "dataElement": "25",
+        "permission": {
+            "access": {
+                "protect": true,
+                "reProtect": true,
+                "unProtect": true
+            }
+        }
+    },
+    {
+        "role": "2",
+        "dataElement": "25",
+        "noAccessOperation": "PROTECTED_VALUE",
+        "permission": {
+            "access": {
+                "protect": true,
+                "reProtect": true,
+                "unProtect": false
+            }
+        }
+    },
+    {
+        "role": "4",
+        "dataElement": "25",
+        "permission": {
+            "access": {
+                "protect": false,
+                "reProtect": false,
+                "unProtect": true
+            }
+        }
+    },
+    {
+        "role": "5",
+        "dataElement": "25",
+        "mask": "1",
+        "permission": {
+            "access": {
+                "protect": false,
+                "reProtect": false,
+                "unProtect": true
+            }
+        }
+    },
+    {
+        "role": "1",
+        "dataElement": "26",
+        "permission": {
+            "access": {
+                "protect": true,
+                "reProtect": true,
+                "unProtect": true
+            }
+        }
+    },
+    {
+        "role": "2",
+        "dataElement": "26",
+        "noAccessOperation": "PROTECTED_VALUE",
+        "permission": {
+            "access": {
+                "protect": true,
+                "reProtect": true,
+                "unProtect": false
+            }
+        }
+    },
+    {
+        "role": "4",
+        "dataElement": "26",
+        "permission": {
+            "access": {
+                "protect": false,
+                "reProtect": false,
+                "unProtect": true
+            }
+        }
+    },
+    {
+        "role": "5",
+        "dataElement": "26",
+        "permission": {
+            "access": {
+                "protect": false,
+                "reProtect": false,
+                "unProtect": true
+            }
+        }
+    },
+    {
+        "role": "1",
+        "dataElement": "27",
+        "permission": {
+            "access": {
+                "protect": true,
+                "reProtect": true,
+                "unProtect": true
+            }
+        }
+    },
+    {
+        "role": "2",
+        "dataElement": "27",
+        "noAccessOperation": "PROTECTED_VALUE",
+        "permission": {
+            "access": {
+                "protect": true,
+                "reProtect": true,
+                "unProtect": false
+            }
+        }
+    },
+    {
+        "role": "4",
+        "dataElement": "27",
+        "permission": {
+            "access": {
+                "protect": false,
+                "reProtect": false,
+                "unProtect": true
+            }
+        }
+    },
+    {
+        "role": "1",
+        "dataElement": "28",
+        "permission": {
+            "access": {
+                "protect": true,
+                "reProtect": true,
+                "unProtect": true
+            }
+        }
+    },
+    {
+        "role": "2",
+        "dataElement": "28",
+        "noAccessOperation": "PROTECTED_VALUE",
+        "permission": {
+            "access": {
+                "protect": true,
+                "reProtect": true,
+                "unProtect": false
+            }
+        }
+    },
+    {
+        "role": "4",
+        "dataElement": "28",
+        "permission": {
+            "access": {
+                "protect": false,
+                "reProtect": false,
+                "unProtect": true
+            }
+        }
+    },
+    {
+        "role": "1",
+        "dataElement": "29",
+        "permission": {
+            "access": {
+                "protect": true,
+                "reProtect": true,
+                "unProtect": true
+            }
+        }
+    },
+    {
+        "role": "2",
+        "dataElement": "29",
+        "noAccessOperation": "PROTECTED_VALUE",
+        "permission": {
+            "access": {
+                "protect": true,
+                "reProtect": true,
+                "unProtect": false
+            }
+        }
+    },
+    {
+        "role": "4",
+        "dataElement": "29",
+        "permission": {
+            "access": {
+                "protect": false,
+                "reProtect": false,
+                "unProtect": true
+            }
+        }
+    },
+    {
+        "role": "1",
+        "dataElement": "30",
+        "permission": {
+            "access": {
+                "protect": true,
+                "reProtect": true,
+                "unProtect": true
+            }
+        }
+    },
+    {
+        "role": "2",
+        "dataElement": "30",
+        "noAccessOperation": "PROTECTED_VALUE",
+        "permission": {
+            "access": {
+                "protect": true,
+                "reProtect": true,
+                "unProtect": false
+            }
+        }
+    },
+    {
+        "role": "4",
+        "dataElement": "30",
+        "permission": {
+            "access": {
+                "protect": false,
+                "reProtect": false,
+                "unProtect": true
+            }
+        }
+    },
+    {
+        "role": "1",
+        "dataElement": "31",
+        "permission": {
+            "access": {
+                "protect": true,
+                "reProtect": true,
+                "unProtect": true
+            }
+        }
+    },
+    {
+        "role": "2",
+        "dataElement": "31",
+        "noAccessOperation": "PROTECTED_VALUE",
+        "permission": {
+            "access": {
+                "protect": true,
+                "reProtect": true,
+                "unProtect": false
+            }
+        }
+    },
+    {
+        "role": "4",
+        "dataElement": "31",
+        "permission": {
+            "access": {
+                "protect": false,
+                "reProtect": false,
+                "unProtect": true
+            }
+        }
+    },
+    {
+        "role": "1",
+        "dataElement": "34",
+        "permission": {
+            "access": {
+                "protect": true,
+                "reProtect": true,
+                "unProtect": true
+            }
+        }
+    },
+    {
+        "role": "2",
+        "dataElement": "34",
+        "noAccessOperation": "PROTECTED_VALUE",
+        "permission": {
+            "access": {
+                "protect": true,
+                "reProtect": true,
+                "unProtect": false
+            }
+        }
+    },
+    {
+        "role": "4",
+        "dataElement": "34",
+        "permission": {
+            "access": {
+                "protect": false,
+                "reProtect": false,
+                "unProtect": true
+            }
+        }
+    },
+    {
+        "role": "1",
+        "dataElement": "35",
+        "permission": {
+            "access": {
+                "protect": true,
+                "reProtect": true,
+                "unProtect": true
+            }
+        }
+    },
+    {
+        "role": "2",
+        "dataElement": "35",
+        "noAccessOperation": "PROTECTED_VALUE",
+        "permission": {
+            "access": {
+                "protect": true,
+                "reProtect": true,
+                "unProtect": false
+            }
+        }
+    },
+    {
+        "role": "4",
+        "dataElement": "35",
+        "permission": {
+            "access": {
+                "protect": false,
+                "reProtect": false,
+                "unProtect": true
+            }
+        }
+    },
+    {
+        "role": "1",
+        "dataElement": "32",
+        "permission": {
+            "access": {
+                "protect": true,
+                "reProtect": true,
+                "unProtect": true
+            }
+        }
+    },
+    {
+        "role": "2",
+        "dataElement": "32",
+        "noAccessOperation": "NULL_VALUE",
+        "permission": {
+            "access": {
+                "protect": true,
+                "reProtect": true,
+                "unProtect": false
+            }
+        }
+    },
+    {
+        "role": "4",
+        "dataElement": "32",
+        "mask": "1",
+        "permission": {
+            "access": {
+                "protect": false,
+                "reProtect": false,
+                "unProtect": true
+            }
+        }
+    },
+    {
+        "role": "5",
+        "dataElement": "32",
+        "mask": "1",
+        "permission": {
+            "access": {
+                "protect": false,
+                "reProtect": false,
+                "unProtect": true
+            }
+        }
+    },
+    {
+        "role": "1",
+        "dataElement": "33",
+        "permission": {
+            "access": {
+                "protect": true,
+                "reProtect": true,
+                "unProtect": true
+            }
+        }
+    },
+    {
+        "role": "2",
+        "dataElement": "33",
+        "noAccessOperation": "NULL_VALUE",
+        "permission": {
+            "access": {
+                "protect": true,
+                "reProtect": true,
+                "unProtect": false
+            }
+        }
+    },
+    {
+        "role": "4",
+        "dataElement": "33",
+        "permission": {
+            "access": {
+                "protect": false,
+                "reProtect": false,
+                "unProtect": true
+            }
+        }
+    }
+]

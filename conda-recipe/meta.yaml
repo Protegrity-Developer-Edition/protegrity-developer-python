@@ -1,5 +1,5 @@
-{% set name = "protegrity-developer-python" %}
-{% set version = "1.1.1" %}
+{% set name = "protegrity-ai-developer-python" %}
+{% set version = "1.2.0" %}
 
 package:
   name: {{ name|lower }}
@@ -12,22 +12,32 @@ source:
 build:
   number: 0
   noarch: python
+  entry_points:
+    - pty-migrate = pty_migrate.cli:main
 
 requirements:
   host:
-    - python >=3.12.11
+    - python >=3.10
     - pip
     - setuptools >=61.0
   run:
-    - python >=3.12.11
+    - python >=3.10
     - requests
+    # botocore powers PTY_AUTH_MODE=aws_iam (SigV4 signing) — the default
+    # auth path for Cloud Protect deployed behind AWS API Gateway.
+    - botocore
+    # PyYAML parses the optional ~/.protegrity/config.yaml config file
+    # (PTY_CONFIG_FILE) used for Team Edition / Cloud Protect settings.
+    - pyyaml >=6.0
 
 test:
   imports:
     - protegrity_developer_python
     - appython
+    - pty_migrate
   commands:
     - pip check
+    - pty-migrate --help
   requires:
     - pip
 
@@ -46,7 +56,7 @@ about:
     
     Part of the Protegrity AI Developer Edition suite for integrating Protegrity's APIs into applications.
   doc_url: http://developer.docs.protegrity.com
-  dev_url: https://github.com/Protegrity-Developer-Edition/protegrity-developer-python
+  dev_url: https://github.com/Protegrity-Developer-Edition/protegrity-ai-developer-python
 
 extra:
   recipe-maintainers:

@@ -1,11 +1,17 @@
 [project]
-name = "protegrity-developer-python"
-version = "1.1.1"
+name = "protegrity-ai-developer-python"
+version = "1.2.0"
 description = "Python module for integrating Protegrity's Data Discovery and Protection APIs into GenAI and traditional applications."
 authors = [{ name = "Protegrity", email="info@protegrity.com" }]
-requires-python = ">=3.12.11"
+requires-python = ">=3.10"
 dependencies = [
     "requests",
+    # botocore powers PTY_AUTH_MODE=aws_iam (SigV4 signing) — the default
+    # auth path for Cloud Protect deployed behind AWS API Gateway.
+    "botocore",
+    # PyYAML parses the optional ~/.protegrity/config.yaml config file
+    # (PTY_CONFIG_FILE) used for Team Edition / Cloud Protect settings.
+    "PyYAML>=6.0",
 ]
 readme = "README.md"
 license = "MIT"
@@ -13,8 +19,11 @@ license-files = ["LICENSE"]
 
 [project.urls]
 homepage = "https://www.protegrity.com/developers"
-repository = "https://github.com/Protegrity-Developer-Edition/protegrity-developer-python"
+repository = "https://github.com/Protegrity-Developer-Edition/protegrity-ai-developer-python"
 documentation = "http://developer.docs.protegrity.com"
+
+[project.scripts]
+pty-migrate = "pty_migrate.cli:main"
 
 [tool.setuptools]
 package-dir = { "" = "src" }
@@ -22,12 +31,15 @@ package-dir = { "" = "src" }
 [tool.setuptools.packages.find]
 where = ["src"]
 
+[tool.setuptools.package-data]
+"pty_migrate.payloads" = ["*.json"]
+
 [tool.pytest.ini_options]
 pythonpath = ["src"]
 
 [tool.black]
 line-length = 88
-target-version = ['py39']
+target-version = ['py310', 'py311', 'py312', 'py313']
 include = '\.pyi?$'
 exclude = '''
 /(

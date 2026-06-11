@@ -8,7 +8,7 @@ This repository contains end-to-end (E2E) tests written using **pytest** with BD
 
 Ensure that you have signed-up for Protegrity AI Developer Edition and following are installed on your system (Linux/Windows/MacOS):
 
--   **Python**: Version 3.12 or higher
+-   **Python**: Version 3.10 or higher
 -   **Docker Compose**
 -   **Allure**
 
@@ -16,7 +16,7 @@ Ensure that you have signed-up for Protegrity AI Developer Edition and following
 
 ## ⚙️ Setup Instructions
 
-1. Copy the `samples` directory and `docker-compose.yml` from the `protegrity-developer-edition` repo to the root of this repo `protegrity-developer-python`.
+1. Copy the `samples` directory and `docker-compose.yml` from the `protegrity-ai-developer-edition` repo to the root of this repo `protegrity-ai-developer-python`.
 
 2. Navigate to the root directory and install the required dependencies:
 
