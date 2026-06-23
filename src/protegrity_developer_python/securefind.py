@@ -4,11 +4,12 @@ Module for discovering and redacting, masking or protecting PII entities in text
 
 from protegrity_developer_python.utils.logger import get_logger
 from protegrity_developer_python.utils.discover import discover
+from protegrity_developer_python.utils.transform import transform_label
+from protegrity_developer_python.utils.constants import get_config
 from protegrity_developer_python.utils.pii_processing import (
+    collect_entity_spans,
     protect_data,
     unprotect_data,
-    redact_data,
-    collect_entity_spans,
 )
 
 # Get logger instance
@@ -62,9 +63,12 @@ def find_and_redact(text: str) -> str:
     """
     Redact or mask PII entities in the input text.
 
-    Uses index-based slicing to ensure precise replacement of PII entities
-    at known character positions. This avoids accidental replacement of repeated
-    entities and ensures correctness when multiple PII spans are present.
+    When method is "redact" (default), calls the Data Discovery v2 transform/label
+    endpoint which discovers PII and returns the redacted text in a single request,
+    replacing sensitive values with [ENTITY_TYPE] labels.
+
+    When method is "mask", uses the discover API to find PII entities and masks
+    them with the configured masking_char.
 
     Args:
         text (str): Input text to process.
@@ -73,14 +77,7 @@ def find_and_redact(text: str) -> str:
         str: Redacted or masked text.
     """
     try:
-        pii_entities = discover(text)
-        logger.debug("Discovered PII entities: %s", pii_entities)
-        if pii_entities:
-            pii_entity_spans = collect_entity_spans(pii_entities)
-            return redact_data(pii_entity_spans, text)
-        logger.info("No PII entities found.")
-        return text
-
+        return transform_label(text)
     except Exception as e:
         logger.error("Failed to process text: %s", e)
         raise

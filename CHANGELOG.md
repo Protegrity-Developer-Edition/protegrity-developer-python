@@ -2,6 +2,42 @@
 
 All notable changes to the Protegrity AI Developer Edition Python project will be documented in this file.
 
+## [1.2.1] - 2026-06-30
+
+This release adds first-class support for connecting `appython` to **Protegrity Team Edition / Cloud Protect**, ships a dedicated migration CLI, and broadens supported Python versions. Existing Developer Edition users see no behavior change — every new feature is opt-in via environment variables or `~/.protegrity/config.yaml`.
+
+### 🎉 Added
+
+#### Team Edition / Cloud Protect connectivity
+- **Pluggable authentication providers.** `appython` now supports `cognito` (Developer Edition, default), `aws_iam` (SigV4 against Cloud Protect behind API Gateway), `bearer_token` (static JWT via `PTY_STATIC_TOKEN`, or one fetched via the OAuth2 client-credentials grant), `mtls`, and `none` (network-trust deployments). The provider is auto-detected from the environment; override with `PTY_AUTH_MODE`.
+- **Cloud Protect endpoint.** Point the same `Protector` / `session.protect()` / `session.unprotect()` code at your own deployment via `PTY_CP_HOST=https://<your-cloud-protect-host>/pty`.
+- **HTTP transport hardening.** New `PTY_REQUEST_TIMEOUT` (default `30s`) and `PTY_MAX_RETRIES` (default `3`, exponential backoff on 429 / 5xx / connection errors; `0` disables) for production resilience.
+
+#### `pty-migrate` CLI (new)
+- Installed automatically with the package. Three subcommands to make the DE → TE move mechanical:
+  - `pty-migrate check` — pre-flight validation of SDK version, `PTY_CP_HOST`, auth credentials, and (optionally) a real `protect` round-trip against your Cloud Protect endpoint. Cross-checks against the deployed PPC rules so missing data elements or role members surface with a concrete remediation command.
+  - `pty-migrate create-policy` — provisions the equivalent Developer Edition policy (data elements, roles, application, rules) on your Protegrity Policy Console. Idempotent — re-runs only create what's missing. Use `--full` to deploy the complete bundled DE policy.
+  - `pty-migrate stats` — per-data-element, per-day breakdown of local DE usage so you can size your TE deployment before cutover.
+
+#### Local usage statistics
+- Anonymous per-operation counters (operation type, data element, day) are written to `~/.protegrity/stats.json` after every `protect` / `unprotect` / `reprotect` call. No payloads or credentials. Used by `pty-migrate stats` and `pty-migrate check`. Disable with `PTY_DISABLE_USAGE_STATS=1`.
+
+#### YAML configuration file
+- All `PTY_*` settings can now live in `~/.protegrity/config.yaml` (override path with `PTY_CONFIG_FILE`). Resolution order: **env var → YAML file → built-in default** for the SDK; **CLI flag → env var → YAML file → default** for `pty-migrate`.
+- Starter template at [`config.yaml.template`](config.yaml.template) documents every recognised key.
+
+### 🔄 Changes
+- **Python version**: minimum lowered from 3.12.11 to **3.11**, broadening compatibility for developers on Python 3.11 and above.
+
+### 🔐 Security
+- **YAML secret-key permission guard.** `static_token` and `client_secret` are read from `~/.protegrity/config.yaml` only when the file is `chmod 600` (pgpass / SSH-style). On loose-permission files the keys are dropped at load time and a warning is printed to stderr; non-secret keys still load. POSIX check is skipped on Windows.
+- **Opt-in password-in-file for `pty-migrate`.** `ppc_password` and `workbench_password` are read from the YAML file only when **both** `allow_secrets_in_file: true` is set **and** the file is `chmod 600`. CLI flags and env vars always win and need no opt-in.
+
+### ⚠️ Migration notes
+- The `USERNAME` entity is now emitted as `USER_NAME` — update any custom entity maps or downstream consumers that pattern-match on the old name.
+
+---
+
 ## [1.1.1] - 2025-12-16
 
 ### 📦 Distribution

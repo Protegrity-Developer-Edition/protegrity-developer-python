@@ -31,6 +31,7 @@ DATA_ELEMENT_MAPPING = {
     # Temporal
     "DATETIME": "datetime",
     "DOB": "datetime",
+    "DATE_OF_BIRTH": "datetime",
     
     # Identification Documents
     "DRIVER_LICENSE": "number",
@@ -65,6 +66,7 @@ DATA_ELEMENT_MAPPING = {
     # Security
     "PASSWORD": "string",
     "USERNAME": "string",
+    "USER_NAME": "string",
     
     # Organization
     "ORGANIZATION": "string",
@@ -84,9 +86,10 @@ CONFIG = {
     "log_level": "INFO",
     "data-discovery": {
         "endpoint_url": os.getenv(
-            "DISCOVER_URL", "http://localhost:8580/pty/data-discovery/v1.1/classify"
-        ),
-        "named_entity_map": {},
+            "DISCOVER_URL", "http://localhost:8580/pty/data-discovery/v2/classify/text"
+        ),        "transform_url": os.getenv(
+            "TRANSFORM_URL", "http://localhost:8580/pty/data-discovery/v2/transform/label"
+        ),        "named_entity_map": {},
         "masking_char": "#",
         "classification_score_threshold": 0.6,
         "method": "redact",  # or "mask"

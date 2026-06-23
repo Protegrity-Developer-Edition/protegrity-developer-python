@@ -6,6 +6,7 @@
 """
 from enum import Enum
 from datetime import datetime
+import atexit
 import os
 from appython.utils.exceptions import (
     ProtectError,
@@ -21,6 +22,10 @@ from appython.service.payload_builder import PayloadBuilder
 from appython.service.request_handler import RequestHandler
 from appython.service.response_handler import ResponseHandler
 from appython.service.auth_token_provider import AuthTokenProvider
+from appython.service.config import load_config
+from appython.service.auth_provider import create_auth_provider
+from appython.stats.collector import UsageCollector
+from appython.stats.writer import flush_stats
 
 
 class Charset(Enum):
@@ -78,7 +83,7 @@ class Protector(object):
             protector.get_version()
 
         """
-        return "1.1.1"
+        return "1.2.1"
 
     def get_version_ex(self):
         """Returns the extended version of the AP Python in use.
@@ -97,7 +102,7 @@ class Protector(object):
             protector.get_version_ex()
 
         """
-        return "SDK Version: 1.1.1, Core Version: 1.1.1"
+        return "SDK Version: 1.2.1, Core Version: 1.2.1"
 
     def terminate(self):
         return True
@@ -118,11 +123,16 @@ class Session(object):
     def __init__(self, user, ttl, **kwargs):
 
         try:
-            api_key, jwt_token = self.authenticate()
-            self.api_key = api_key
-            self.jwt_token = jwt_token
+            self._config = load_config()
+            self._auth_provider = create_auth_provider(self._config)
+        except InitializationError:
+            raise
         except Exception as e:
             raise InitializationError(err_msg=f"{e}")
+
+        # Keep legacy attributes for backward compat (tests may access them)
+        self.api_key = getattr(self._auth_provider, '_api_key', None)
+        self.jwt_token = getattr(self._auth_provider, '_jwt_token', None)
 
         self._user = user
         if ttl is None:
@@ -134,16 +144,21 @@ class Session(object):
         self._timestamp = datetime.now()
         self._closed = False
 
+        # Usage statistics collector
+        self._stats = UsageCollector(user)
+
+        # Register atexit handler so stats flush before interpreter shutdown
+        atexit.register(self._atexit_flush)
+
     def authenticate(self):
-        """Authenticate the user with the given email and password.
+        """Legacy authentication method. Kept for backward compatibility.
 
-        Args:
-            email (str): Email for authentication.
-            password (str): Password for authentication.
+        The new auth provider pattern handles authentication during __init__.
+        This method is no longer called internally but retained for any
+        external code that may reference it.
 
-        Raises:
-            InitializationError: If authentication fails.
-
+        Returns:
+            tuple: (api_key, jwt_token)
         """
         email = os.environ.get("DEV_EDITION_EMAIL", None)
         password = os.environ.get("DEV_EDITION_PASSWORD", None)
@@ -158,8 +173,7 @@ class Session(object):
             raise InitializationError(
                 err_msg="Authentication failed: DEV_EDITION_API_KEY must be provided."
             )
-        # Authenticate and get the JWT token
-        response = AuthTokenProvider.get_jwt_token(email, password,api_key)
+        response = AuthTokenProvider.get_jwt_token(email, password, api_key)
         if response.status_code != 200:
             raise InitializationError(
                 err_msg=f"{response.json().get('error', 'Could not authenticate user.')}"
@@ -251,12 +265,13 @@ class Session(object):
                 kwargs, input["input_datatype"], "protect", self._user, de
             )
             payload, return_type, base_url = PayloadBuilder.build_api_request(
-                input, arguments, "protect"
+                input, arguments, "protect", self._config
             )
-            response = RequestHandler.send_api_request(
-                payload, base_url, self.api_key, self.jwt_token
+            response = RequestHandler.send_request(
+                payload, base_url, self._auth_provider, self._config
             )
             result = ResponseHandler.process(response, return_type, "protect")
+            self._stats.record_protect(de)
             return result
 
         except Exception as e:
@@ -346,12 +361,13 @@ class Session(object):
                 kwargs, input["input_datatype"], "unprotect", self._user, de
             )
             payload, return_type, base_url = PayloadBuilder.build_api_request(
-                input, arguments, "unprotect"
+                input, arguments, "unprotect", self._config
             )
-            response = RequestHandler.send_api_request(
-                payload, base_url, self.api_key, self.jwt_token
+            response = RequestHandler.send_request(
+                payload, base_url, self._auth_provider, self._config
             )
             result = ResponseHandler.process(response, return_type, "unprotect")
+            self._stats.record_unprotect(de)
             return result
         except Exception as e:
             raise UnprotectError(err_msg=e)
@@ -456,12 +472,13 @@ class Session(object):
                 kwargs, input["input_datatype"], "reprotect", self._user, old_de, new_de
             )
             payload, return_type, base_url = PayloadBuilder.build_api_request(
-                input, arguments, "reprotect"
+                input, arguments, "reprotect", self._config
             )
-            response = RequestHandler.send_api_request(
-                payload, base_url, self.api_key, self.jwt_token
+            response = RequestHandler.send_request(
+                payload, base_url, self._auth_provider, self._config
             )
             result = ResponseHandler.process(response, return_type, "reprotect")
+            self._stats.record_reprotect(old_de, new_de)
             return result
         except Exception as e:
             raise ReprotectError(err_msg=e)
@@ -501,7 +518,18 @@ class Session(object):
         self.__validate()
         return True
 
+    def _atexit_flush(self):
+        """Called by atexit — flushes stats while modules are still alive."""
+        if not self._closed and hasattr(self, "_stats") and self._stats.enabled:
+            flush_stats(self._stats.get_session_data())
+            self._closed = True
+
     def __close_session(self):
+        # Flush usage stats to disk before closing
+        if hasattr(self, "_stats") and self._stats.enabled:
+            flush_stats(self._stats.get_session_data())
+        # Unregister atexit since we've already flushed
+        atexit.unregister(self._atexit_flush)
         self._provider = None
         self._timestamp = None
         self._ttl = None
@@ -519,5 +547,8 @@ class Session(object):
         self.__close_session()
 
     def __del__(self):
-        if hasattr(self, "_closed") and not self._closed:
-            self.__close_session()
+        try:
+            if hasattr(self, "_closed") and not self._closed:
+                self.__close_session()
+        except Exception:
+            pass

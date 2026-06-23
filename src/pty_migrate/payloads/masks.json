@@ -1,0 +1,18 @@
+[
+    {
+        "name": "mask",
+        "description": "mask character",
+        "fromLeft": 0,
+        "fromRight": 0,
+        "masked": false,
+        "character": "*"
+    },
+    {
+        "name": "mask_ccn",
+        "description": "Mask CCN data",
+        "fromLeft": 4,
+        "fromRight": 4,
+        "masked": false,
+        "character": "*"
+    }
+]
