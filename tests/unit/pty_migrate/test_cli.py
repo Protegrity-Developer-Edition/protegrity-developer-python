@@ -35,7 +35,7 @@ def sample_stats_file(tmp_path):
         "collected_since": "2025-06-01T00:00:00Z",
         "last_updated": "2025-06-10T12:00:00Z",
         "sdk": "appython",
-        "sdk_version": "1.2.0",
+        "sdk_version": "1.2.1",
         "data_elements": {
             "SSN": {
                 "protect_count": 100,
@@ -281,7 +281,7 @@ class TestCheckCommand:
     @patch("pty_migrate.check_cmd._check_te_host")
     @patch("pty_migrate.check_cmd._check_auth_mode")
     def test_check_sdk_version_pass(self, mock_auth, mock_host, mock_version, capsys):
-        mock_version.return_value = ("ok", "1.2.0")
+        mock_version.return_value = ("ok", "1.2.1")
         mock_host.return_value = (False, "")
         mock_auth.return_value = (False, "", "PTY_AUTH_MODE not set")
 
@@ -292,7 +292,7 @@ class TestCheckCommand:
         )
         run_check(args)
         captured = capsys.readouterr()
-        assert "1.2.0" in captured.out
+        assert "1.2.1" in captured.out
 
     @patch("pty_migrate.check_cmd._check_sdk_version")
     @patch("pty_migrate.check_cmd._check_te_host")

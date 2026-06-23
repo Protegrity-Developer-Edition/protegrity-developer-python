@@ -2,7 +2,7 @@
 
 All notable changes to the Protegrity AI Developer Edition Python project will be documented in this file.
 
-## [1.2.0] - 2026-06-30
+## [1.2.1] - 2026-06-30
 
 This release adds first-class support for connecting `appython` to **Protegrity Team Edition / Cloud Protect**, ships a dedicated migration CLI, and broadens supported Python versions. Existing Developer Edition users see no behavior change — every new feature is opt-in via environment variables or `~/.protegrity/config.yaml`.
 
@@ -27,7 +27,7 @@ This release adds first-class support for connecting `appython` to **Protegrity 
 - Starter template at [`config.yaml.template`](config.yaml.template) documents every recognised key.
 
 ### 🔄 Changes
-- **Python version**: minimum lowered from 3.12.11 to **3.10**, broadening compatibility for developers on Python 3.10, 3.11, and any 3.12.x release.
+- **Python version**: minimum lowered from 3.12.11 to **3.11**, broadening compatibility for developers on Python 3.11 and above.
 
 ### 🔐 Security
 - **YAML secret-key permission guard.** `static_token` and `client_secret` are read from `~/.protegrity/config.yaml` only when the file is `chmod 600` (pgpass / SSH-style). On loose-permission files the keys are dropped at load time and a warning is printed to stderr; non-secret keys still load. POSIX check is skipped on Windows.

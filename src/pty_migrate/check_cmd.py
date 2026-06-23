@@ -100,11 +100,11 @@ def _load_stats(stats_file=None):
 
 
 def _check_sdk_version():
-    """Check Python SDK version >= 1.2.0.
+    """Check Python SDK version >= 1.2.1.
 
     Returns (status, detail) where status is one of:
-      "ok"         — installed and >= 1.2.0
-      "old"        — installed but < 1.2.0
+      "ok"         — installed and >= 1.2.1
+      "old"        — installed but < 1.2.1
       "load_error" — package metadata says installed but `import appython` fails
                      (e.g. Windows: SDK uses fcntl which is unix-only)
       "missing"    — package not installed at all
@@ -655,9 +655,9 @@ def run_check(args):
     py_ok = py_status == "ok"
 
     if py_ok:
-        print(f"  ✓ Python SDK: {py_version} (minimum: 1.2.0)")
+        print(f"  ✓ Python SDK: {py_version} (minimum: 1.2.1)")
     elif py_status == "old":
-        print(f"  ✗ Python SDK: {py_version} (need >= 1.2.0)")
+        print(f"  ✗ Python SDK: {py_version} (need >= 1.2.1)")
         print(f"    → pip install --upgrade protegrity-ai-developer-python")
     elif py_status == "load_error":
         # Package installed but `import appython` raised. Report verbatim so
@@ -826,7 +826,7 @@ def run_check(args):
             elif java_ok is False:
                 print(f"    {step}. Upgrade Java SDK to >= 1.1.0 in your pom.xml.")
             else:
-                print(f"    {step}. Install at least one SDK (Python >= 1.2.0 or Java >= 1.1.0).")
+                print(f"    {step}. Install at least one SDK (Python >= 1.2.1 or Java >= 1.1.0).")
             step += 1
         if not ok or not host:
             print(f"    {step}. Set Team Edition host: export PTY_CP_HOST=<your-cloud-protect-url>")

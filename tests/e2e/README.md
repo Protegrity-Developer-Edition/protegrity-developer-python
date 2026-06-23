@@ -8,7 +8,7 @@ This repository contains end-to-end (E2E) tests written using **pytest** with BD
 
 Ensure that you have signed-up for Protegrity AI Developer Edition and following are installed on your system (Linux/Windows/MacOS):
 
--   **Python**: Version 3.10 or higher
+-   **Python**: Version 3.11 or higher
 -   **Docker Compose**
 -   **Allure**
 

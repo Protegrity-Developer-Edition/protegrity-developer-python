@@ -1,9 +1,9 @@
 [project]
 name = "protegrity-ai-developer-python"
-version = "1.2.0"
+version = "1.2.1"
 description = "Python module for integrating Protegrity's Data Discovery and Protection APIs into GenAI and traditional applications."
 authors = [{ name = "Protegrity", email="info@protegrity.com" }]
-requires-python = ">=3.10"
+requires-python = ">=3.11"
 dependencies = [
     "requests",
     # botocore powers PTY_AUTH_MODE=aws_iam (SigV4 signing) — the default
@@ -19,7 +19,7 @@ license-files = ["LICENSE"]
 
 [project.urls]
 homepage = "https://www.protegrity.com/developers"
-repository = "https://github.com/Protegrity-Developer-Edition/protegrity-ai-developer-python"
+repository = "https://github.com/Protegrity-AI-Developer-Edition/protegrity-ai-developer-python"
 documentation = "http://developer.docs.protegrity.com"
 
 [project.scripts]
@@ -39,7 +39,7 @@ pythonpath = ["src"]
 
 [tool.black]
 line-length = 88
-target-version = ['py310', 'py311', 'py312', 'py313']
+target-version = ['py311', 'py312', 'py313']
 include = '\.pyi?$'
 exclude = '''
 /(
