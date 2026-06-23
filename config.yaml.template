@@ -1,0 +1,114 @@
+# Protegrity SDK configuration template.
+#
+# Install this file at one of:
+#   ~/.protegrity/config.yaml          (default location, auto-detected)
+#   $PTY_CONFIG_FILE                   (override path)
+#
+# Resolution order is env > this file > built-in defaults. Anything left
+# commented stays at its default (or is taken from the environment).
+#
+# IMPORTANT
+#   - Keep this file readable only by the user that runs your app:
+#         chmod 600 ~/.protegrity/config.yaml
+#   - Do NOT commit a populated copy to source control.
+#   - Prefer environment variables (or your secret manager) for production
+#     secrets like static_token, client_secret, and DE passwords.
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Auth mode — pick exactly one (or leave commented to let the SDK auto-detect).
+# Equivalent env var: PTY_AUTH_MODE
+#   cognito         Developer Edition (auto-selected when DEV_EDITION_* set)
+#   aws_iam         SigV4 (auto-selected when PTY_CP_HOST + AWS creds present)
+#   bearer_token    static JWT  OR  OAuth2 client_credentials (see bearer_token section)
+#   mtls            client certificate auth
+#   none            no auth (network-trust deployments only)
+# ─────────────────────────────────────────────────────────────────────────────
+# auth_mode: aws_iam
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Team Edition / Cloud Protect endpoint (required for every TE mode).
+# Equivalent env var: PTY_CP_HOST
+# ─────────────────────────────────────────────────────────────────────────────
+# protect_host: https://your-cloud-protect-host/pty
+
+# Cloud Protect API version segment. Default: "1".
+# Equivalent env var: PTY_API_VERSION
+# version: "1"
+
+# ─────────────────────────────────────────────────────────────────────────────
+# HTTP resilience.
+# Equivalent env vars: PTY_REQUEST_TIMEOUT, PTY_MAX_RETRIES
+# ─────────────────────────────────────────────────────────────────────────────
+# request_timeout: 30       # seconds per request
+# max_retries: 3            # retries on 429/5xx with exponential backoff (0 disables)
+
+# ─────────────────────────────────────────────────────────────────────────────
+# bearer_token mode
+# Equivalent env vars: PTY_STATIC_TOKEN, PTY_TOKEN_ENDPOINT, PTY_CLIENT_ID, PTY_CLIENT_SECRET
+# ─────────────────────────────────────────────────────────────────────────────
+# Option A: pre-issued static JWT
+# static_token: eyJhbGciOi...
+
+# Option B: OAuth2 client_credentials (token fetched on demand)
+# token_endpoint: https://idp.example.com/oauth2/token
+# client_id: my-client-id
+# client_secret: my-client-secret
+
+# ─────────────────────────────────────────────────────────────────────────────
+# mtls mode
+# Equivalent env vars: PTY_CLIENT_CERT, PTY_CLIENT_KEY, PTY_CA_CERT
+# ─────────────────────────────────────────────────────────────────────────────
+# client_cert: /etc/protegrity/client.crt
+# client_key:  /etc/protegrity/client.key
+# ca_cert:     /etc/protegrity/ca-bundle.pem    # optional, for non-public CAs
+
+# ─────────────────────────────────────────────────────────────────────────────
+# pty-migrate CLI settings (used by `pty-migrate check` / `create-policy` / `stats`)
+# Precedence for the CLI is: --flag > env var > this file > default.
+# Equivalent env vars: PTY_PPC_HOST, PTY_PPC_USER, PTY_PPC_PORT,
+#                      PTY_WORKBENCH_USER, PTY_STATS_FILE
+# ─────────────────────────────────────────────────────────────────────────────
+# ppc_host: ppc.example.internal
+# ppc_user: admin                # check-command defaults to "workbench"
+# ppc_port: 443
+# workbench_user: workbench
+# stats_file: ~/.protegrity/usage_stats.json   # this IS the default; override only if needed
+
+# ─────────────────────────────────────────────────────────────────────────────
+# OPTIONAL: store PPC passwords in this file (off by default)
+#
+# The default is env-only. To allow passwords here you MUST:
+#   1. Set `allow_secrets_in_file: true` below.
+#   2. Run: chmod 600 ~/.protegrity/config.yaml
+# If perms are looser, secrets are dropped with a stderr warning (pgpass-style).
+#
+# Industry parallel: `~/.aws/credentials`, `~/.pgpass`, `~/.npmrc` all do this.
+# It's safer than `export PTY_PPC_PASSWORD=...` in `~/.zshrc` (often committed
+# to dotfile repos), and avoids leaking via shell history / `ps` / CI logs.
+#
+# Equivalent env vars (still win over the file):
+#   PTY_PPC_PASSWORD, PTY_WORKBENCH_PASSWORD
+# ─────────────────────────────────────────────────────────────────────────────
+# allow_secrets_in_file: true
+# ppc_password: changeme
+# workbench_password: changeme
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Developer Edition (legacy / cognito mode)
+# These are READ FROM THE ENVIRONMENT ONLY (DEV_EDITION_EMAIL / _PASSWORD /
+# _API_KEY). They are intentionally NOT loaded from this file to avoid
+# accidentally checking real credentials into config-as-code.
+# ─────────────────────────────────────────────────────────────────────────────
+# # export DEV_EDITION_EMAIL=you@example.com
+# # export DEV_EDITION_PASSWORD=...
+# # export DEV_EDITION_API_KEY=...
+
+# ─────────────────────────────────────────────────────────────────────────────
+# aws_iam mode
+# AWS credentials are READ FROM THE STANDARD AWS CHAIN (env, profile, role).
+# Do not put AWS keys in this file. Use one of:
+# ─────────────────────────────────────────────────────────────────────────────
+# # export AWS_PROFILE=my-profile             # ~/.aws/credentials
+# # export AWS_ACCESS_KEY_ID=...              # plus AWS_SECRET_ACCESS_KEY
+# # export AWS_SESSION_TOKEN=...              # required for STS / SSO
+# # export AWS_DEFAULT_REGION=us-east-1

@@ -1,0 +1,8 @@
+[
+    {
+        "name": "DevEditionTrustedApp",
+        "description": "Trusted application for Protegrity Developer Edition - all apps and users",
+        "applicationName": "*",
+        "applicationUser": "*"
+    }
+]

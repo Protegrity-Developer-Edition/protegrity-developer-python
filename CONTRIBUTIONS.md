@@ -1,6 +1,6 @@
-# Contributing to protegrity-developer-python
+# Contributing to protegrity-ai-developer-python
 
-Thank you for your interest in contributing to the **protegrity-developer-python** repository! We welcome contributions from the community to help improve and expand the capabilities of this project.
+Thank you for your interest in contributing to the **protegrity-ai-developer-python** repository! We welcome contributions from the community to help improve and expand the capabilities of this project.
 
 ## 🧠 How to Contribute
 
@@ -9,8 +9,8 @@ Click the **Fork** button at the top right of this page to create your own copy 
 
 ### 2. Clone Your Fork
 ```bash
-git clone https://github.com/your-username/protegrity-developer-python.git
-cd protegrity-developer-python
+git clone https://github.com/your-username/protegrity-ai-developer-python.git
+cd protegrity-ai-developer-python
 ```
 
 ### 3. Create a Branch

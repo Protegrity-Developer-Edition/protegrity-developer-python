@@ -38,5 +38,8 @@ class AuthTokenProvider:
         }
         base_url = f"https://{runtime_host}/auth/login"
         payload = {"email": email, "password": password}
-        response = requests.post(base_url, json=payload, headers=headers)
+        # Bound the login call so a hung auth endpoint does not stall SDK init.
+        # Retries are intentionally NOT applied here — auth errors are usually
+        # credential issues, not transient, and we do not want to amplify them.
+        response = requests.post(base_url, json=payload, headers=headers, timeout=30)
         return response

@@ -26,6 +26,16 @@ def mock_get_jwt_token(email: str, password: str,api_key:str):
 
 def mock_send_api_request(payload: dict, base_url: str, api_key: str, jwt_token: str):
     """Mock implementation of RequestHandler.send_api_request for protect/unprotect operations"""
+    return _mock_request_impl(payload, base_url)
+
+
+def mock_send_request(payload: dict, url: str, auth_provider, config=None):
+    """Mock implementation of RequestHandler.send_request for protect/unprotect operations"""
+    return _mock_request_impl(payload, url)
+
+
+def _mock_request_impl(payload: dict, base_url: str):
+    """Shared mock implementation for both legacy and new request methods."""
     
     # Valid data elements
     valid_data_elements = {
@@ -201,6 +211,10 @@ def start_get_jwt_token_mocking():
 @contextmanager
 def start_protect_unprotect_mocking():
     """Context manager to mock both JWT token and protect/unprotect operations"""
+    os.environ.setdefault('DEV_EDITION_EMAIL', 'test@example.com')
+    os.environ.setdefault('DEV_EDITION_PASSWORD', 'test_password')
+    os.environ.setdefault('DEV_EDITION_API_KEY', 'test_api_key')
     with patch('appython.service.auth_token_provider.AuthTokenProvider.get_jwt_token', side_effect=mock_get_jwt_token), \
-         patch('appython.protector.RequestHandler.send_api_request', side_effect=mock_send_api_request):
+         patch('appython.service.auth_provider.CognitoAuthProvider.initialize'), \
+         patch('appython.protector.RequestHandler.send_request', side_effect=mock_send_request):
         yield

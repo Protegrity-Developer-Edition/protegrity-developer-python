@@ -102,7 +102,7 @@ Feature: Sensitive Data Redaction and Masking using protegrity_developer_python
             """
         Then the output should be redacted as follows by defaulting to "redact" method:
             """
-            [DATETIME]: [LOCATION] is the biggest planet in the solar system and has a mass that is more than twice that of all the other planets combined. It is known for its Great Red Spot, a giant storm that has been raging for [DATETIME].
+            2025-07-21 [DATETIME],675: Jupiter is the biggest planet in the solar system and has a mass that is more than twice that of all the other planets combined. It is known for its Great Red Spot, a giant storm that has been raging for hundreds of years.
             """
 
     @redact @discover
@@ -116,5 +116,5 @@ Feature: Sensitive Data Redaction and Masking using protegrity_developer_python
             """
         Then the output should be redacted as follows:
             """
-            [PERSON] (SSN: [SOCIAL_SECURITY_ID], 📧: [EMAIL_ADDRESS]) from [LOCATION] transferred ¥5000 to 王小明 (身份证号: 110101199003078888, 📱: [LOCATION] 138 0000 0000) in 北京市朝阳区. Meanwhile, [PERSON] (DNI: [NATIONAL_ID], 📞: [PHONE_NUMBER] from [LOCATION] updated her IBAN to [BANK_ACCOUNT|DATETIME]. 🏦💳 The transaction was logged at [DATETIME] 14:30:00 UTC. Everything looked normal until 🚨 a suspicious login was detected from IP [IP_ADDRESS]. Stay safe online! 🔐🌐
+            John Doe (SSN: [SOCIAL_SECURITY_ID], 📧: [EMAIL_ADDRESS]) from New York transferred ¥5000 to 王小明 (身份证号: [NATIONAL_ID], 📱: +86 138 0000 0000) in 北京市朝阳区. Meanwhile, María González (DNI: [TAX_ID], 📞: [PHONE_NUMBER] from [LOCATION] updated her IBAN to [BANK_ACCOUNT]. 🏦💳 The transaction was logged at 2025-07-21 14:30:00 UTC. Everything looked normal until 🚨 a suspicious login was detected from IP [IP_ADDRESS]. Stay safe online! 🔐🌐
             """
