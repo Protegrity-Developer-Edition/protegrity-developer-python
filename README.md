@@ -170,6 +170,8 @@ Requires the Cloud Protect endpoint URL plus credentials for one of the supporte
 
 > No portal registration needed, Protegrity AI Team Edition uses the credentials provided by the Protegrity admin.
 
+#### Option B: Protegrity AI Team Edition / Cloud Protect (own deployment)
+Requires the Cloud Protect endpoint URL plus credentials for one of the supported [auth modes](#connecting-to-protegrity-ai-team-edition-cloud-protect).
 
 ### Build the protegrity-ai-developer-python module
 
