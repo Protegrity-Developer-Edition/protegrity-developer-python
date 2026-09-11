@@ -83,7 +83,7 @@ class Protector(object):
             protector.get_version()
 
         """
-        return "1.2.1"
+        return "1.2.2"
 
     def get_version_ex(self):
         """Returns the extended version of the AP Python in use.
@@ -102,7 +102,7 @@ class Protector(object):
             protector.get_version_ex()
 
         """
-        return "SDK Version: 1.2.1, Core Version: 1.2.1"
+        return "SDK Version: 1.2.2, Core Version: 1.2.2"
 
     def terminate(self):
         return True
@@ -258,14 +258,14 @@ class Session(object):
         """
         self.__validate()
         try:
-            input = InputPreprocessor.convert_input_to_string(
+            input_data = InputPreprocessor.convert_input_to_string(
                 data, kwargs, de, "protect"
             )
             arguments = InputPreprocessor.validate_parameters(
-                kwargs, input["input_datatype"], "protect", self._user, de
+                kwargs, input_data["input_datatype"], "protect", self._user, de
             )
             payload, return_type, base_url = PayloadBuilder.build_api_request(
-                input, arguments, "protect", self._config
+                input_data, arguments, "protect", self._config
             )
             response = RequestHandler.send_request(
                 payload, base_url, self._auth_provider, self._config
@@ -354,14 +354,14 @@ class Session(object):
         """
         self.__validate()
         try:
-            input = InputPreprocessor.convert_input_to_string(
+            input_data = InputPreprocessor.convert_input_to_string(
                 data, kwargs, de, "unprotect"
             )
             arguments = InputPreprocessor.validate_parameters(
-                kwargs, input["input_datatype"], "unprotect", self._user, de
+                kwargs, input_data["input_datatype"], "unprotect", self._user, de
             )
             payload, return_type, base_url = PayloadBuilder.build_api_request(
-                input, arguments, "unprotect", self._config
+                input_data, arguments, "unprotect", self._config
             )
             response = RequestHandler.send_request(
                 payload, base_url, self._auth_provider, self._config
@@ -465,14 +465,14 @@ class Session(object):
         """
         self.__validate()
         try:
-            input = InputPreprocessor.convert_input_to_string(
+            input_data = InputPreprocessor.convert_input_to_string(
                 data, kwargs, new_de, "reprotect"
             )
             arguments = InputPreprocessor.validate_parameters(
-                kwargs, input["input_datatype"], "reprotect", self._user, old_de, new_de
+                kwargs, input_data["input_datatype"], "reprotect", self._user, old_de, new_de
             )
             payload, return_type, base_url = PayloadBuilder.build_api_request(
-                input, arguments, "reprotect", self._config
+                input_data, arguments, "reprotect", self._config
             )
             response = RequestHandler.send_request(
                 payload, base_url, self._auth_provider, self._config
@@ -515,6 +515,7 @@ class Session(object):
             True
 
         """
+        _ = (de, access_type, newde)  # Reserved for future policy checks
         self.__validate()
         return True
 

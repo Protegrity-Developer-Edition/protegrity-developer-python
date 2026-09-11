@@ -36,7 +36,7 @@ def _get_session(max_retries: int) -> requests.Session:
         )
         adapter = HTTPAdapter(max_retries=retry)
         sess.mount("https://", adapter)
-        sess.mount("http://", adapter)
+        sess.mount("http://", adapter)  # NOSONAR - adapter prefix for local dev/testing, not an outbound URL
     _session_cache[max_retries] = sess
     return sess
 
@@ -57,6 +57,7 @@ def _resolve_resilience(config):
 
 
 class RequestHandler:
+    @staticmethod
     def send_api_request(
         payload: dict, base_url: str, api_key: str, jwt_token: str
     ) -> requests.Response:
@@ -85,6 +86,7 @@ class RequestHandler:
         )
         return response
 
+    @staticmethod
     def send_request(
         payload: dict, url: str, auth_provider, config: dict = None
     ) -> requests.Response:

@@ -9,6 +9,8 @@ from appython.utils.constants import (
 )
 from appython.utils.exceptions import PythonSDKException
 
+_UNKNOWN_ERROR = "Unknown Error"
+
 
 class ResponseHandler:
     @staticmethod
@@ -43,7 +45,7 @@ class ResponseHandler:
 
             if not is_query_success:
                 try:
-                    message = response.json().get("error_msg", "Unknown Error")
+                    message = response.json().get("error_msg", _UNKNOWN_ERROR)
                     mapped_message = PythonSDKException.map_error_message(message)
                 except Exception:
                     mapped_message = "Failed to parse error message from response"
@@ -64,10 +66,10 @@ class ResponseHandler:
             except Exception:
                 raise Exception(f"26, {log_return_code[26]}")  # Error in setting data
         else:
-            is_query_success = response.json().get("success", "Unknown Error")
+            is_query_success = response.json().get("success", _UNKNOWN_ERROR)
             if not is_query_success:
                 try:
-                    message = response.json().get("error_msg", "Unknown Error")
+                    message = response.json().get("error_msg", _UNKNOWN_ERROR)
                     mapped_message = PythonSDKException.map_error_message(message)
                 except Exception:
                     mapped_message = "Failed to parse error message from response"
