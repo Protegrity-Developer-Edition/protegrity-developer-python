@@ -36,6 +36,7 @@ def get_base_url(operation_type: str, config=None) -> str:
 
 
 class PayloadBuilder:
+    @staticmethod
     def build_api_request(input: dict, arguments: dict, operation_type: str, config=None):
         """
         Builds the API request payload and return type metadata for a given data protection operation.

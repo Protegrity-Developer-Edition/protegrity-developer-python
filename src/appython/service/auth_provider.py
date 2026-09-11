@@ -199,6 +199,7 @@ class NoneAuthProvider(AuthProvider):
     """No authentication — for internal/trusted networks."""
 
     def __init__(self, config):
+        # No configuration required for unauthenticated requests
         pass
 
     def authenticate_request(self, method, url, headers, body):

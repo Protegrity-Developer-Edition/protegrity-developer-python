@@ -272,7 +272,6 @@ def redact_data(
                 )
                 text = text[:start] + label + text[end:]
             else:
-                label = f"[{entity_name}]"
                 logger.warning(
                     "Entity '%s' detected at span [%d:%d] but no mapping found in named_entity_map - skipping redaction",
                     entity_name,

@@ -1,6 +1,6 @@
 [project]
 name = "protegrity-ai-developer-python"
-version = "1.2.1"
+version = "1.2.2"
 description = "Python module for integrating Protegrity's Data Discovery and Protection APIs into GenAI and traditional applications."
 authors = [{ name = "Protegrity", email="info@protegrity.com" }]
 requires-python = ">=3.11"

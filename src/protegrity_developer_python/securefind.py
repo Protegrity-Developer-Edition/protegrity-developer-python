@@ -15,6 +15,8 @@ from protegrity_developer_python.utils.pii_processing import (
 # Get logger instance
 logger = get_logger()
 
+_LOG_ERR_PROCESS_TEXT = "Failed to process text: %s"
+
 
 def find_and_protect(text: str) -> str:
     """
@@ -38,7 +40,7 @@ def find_and_protect(text: str) -> str:
         logger.info("No PII entities found.")
         return text
     except Exception as e:
-        logger.error("Failed to process text: %s", e)
+        logger.error(_LOG_ERR_PROCESS_TEXT, e)
         raise
 
 def find_and_unprotect(text: str) -> str:
@@ -56,7 +58,7 @@ def find_and_unprotect(text: str) -> str:
     try:
         return unprotect_data(text)
     except Exception as e:
-        logger.error("Failed to process text: %s", e)
+        logger.error(_LOG_ERR_PROCESS_TEXT, e)
         raise
 
 def find_and_redact(text: str) -> str:
@@ -79,5 +81,5 @@ def find_and_redact(text: str) -> str:
     try:
         return transform_label(text)
     except Exception as e:
-        logger.error("Failed to process text: %s", e)
+        logger.error(_LOG_ERR_PROCESS_TEXT, e)
         raise

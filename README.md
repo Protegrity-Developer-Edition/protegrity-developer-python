@@ -1,14 +1,13 @@
 <div align="center">
 
 # Protegrity AI Developer Edition Python
-[![Version](https://img.shields.io/badge/version-1.2.1-green.svg?style=flat)](https://github.com/Protegrity-AI-Developer-Edition/protegrity-ai-developer-python/releases)
+[![Version](https://img.shields.io/badge/version-1.2.2-green.svg?style=flat)](https://github.com/Protegrity-AI-Developer-Edition/protegrity-ai-developer-python/releases)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg?style=flat)](https://github.com/Protegrity-AI-Developer-Edition/protegrity-ai-developer-python/blob/main/LICENSE)
 [![Python 3.11+](https://img.shields.io/badge/python-3.11+-blue.svg?style=flat)](https://www.python.org/downloads/)
 [![Linux](https://img.shields.io/badge/Linux-FCC624?style=flat&logo=linux&logoColor=black)](https://www.linux.org/)
 [![Windows](https://img.shields.io/badge/Windows-0078D6?style=flat&logo=windows&logoColor=white)](https://www.microsoft.com/windows/)
 [![macOS](https://img.shields.io/badge/mac%20os-000000?style=flat&logo=macos&logoColor=F0F0F0)](https://www.apple.com/macos/)
-[![PyPI 1.2.1](https://img.shields.io/pypi/v/protegrity-ai-developer-python.svg)](https://pypi.org/project/protegrity-ai-developer-python/)
-[![Anaconda 1.2.1](https://anaconda.org/protegrity/protegrity-ai-developer-python/badges/version.svg?style=flat)](https://anaconda.org/protegrity/protegrity-ai-developer-python)
+[![PyPI 1.2.2](https://img.shields.io/pypi/v/protegrity-ai-developer-python.svg)](https://pypi.org/project/protegrity-ai-developer-python/)
 [![Service Health](https://img.shields.io/badge/service-health-brightgreen.svg?style=flat&logo=statuspage&logoColor=white)](https://www.protegrity.com/developers/status)
 [![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/Protegrity-AI-Developer-Edition/protegrity-ai-developer-python)
 </div>
@@ -23,8 +22,8 @@ Welcome to the `protegrity-ai-developer-python` repository, part of the Protegri
     - [Why This Matters](#why-this-matters)
 2. [Repository Structure](#repository-structure)
 3. [Features](#features)
-    - [Protegrity Developer Python](#Protegrity-Developer-Python)
-    - [Application Protector Python](#Application-Protector-Python)
+    - [Protegrity Developer Python](#protegrity-developer-python)
+    - [Application Protector Python](#application-protector-python)
 4. [Getting Started](#getting-started)
    - [Prerequisites](#prerequisites)
 5. [Protegrity AI Developer Edition Python Module](#protegrity-ai-developer-edition-python-module)
@@ -132,11 +131,11 @@ Sensitive data shows up in more places than expected, such as logs, payloads, pr
 | **Data Protection**    | Protects sensitive structured data using Protegrity policies.                        |
 | **Data Unprotection**  | Restores original data from its protected form.                                               |
 | **Session Management** | Manages secure sessions for protection and unprotection operations.                           |
-| **Protegrity AI Team Edition support** *(new in 1.2.1)* | Connect to Protegrity AI Team Edition / Cloud Protect endpoints using `PTY_CP_HOST`. |
-| **Pluggable authentication** *(new in 1.2.1)* | Five auth modes: `cognito` (Protegrity AI Developer Edition default), `aws_iam` (SigV4), `bearer_token` (static JWT or one fetched using OAuth2 client-credentials), `mtls`, and `none`. Auto-detected from your environment. |
-| **HTTP resilience** *(new in 1.2.1)* | Configurable timeouts (`PTY_REQUEST_TIMEOUT`) and automatic retries with exponential backoff on transient failures (`PTY_MAX_RETRIES`). |
-| **Local usage statistics** *(new in 1.2.1)* | Anonymous per-operation counts written to `~/.protegrity/usage_stats.json` for migration planning. View with `pty-migrate stats`. |
-| **`pty-migrate` CLI** *(new in 1.2.1)* | One-command migration helper: pre-flight checks, PPC policy creation, and stats reporting. |
+| **Protegrity AI Team Edition support** | Connect to Protegrity AI Team Edition / Cloud Protect endpoints using `PTY_CP_HOST`. |
+| **Pluggable authentication** | Five auth modes: `cognito` (Protegrity AI Developer Edition default), `aws_iam` (SigV4), `bearer_token` (static JWT or one fetched using OAuth2 client-credentials), `mtls`, and `none`. Auto-detected from your environment. |
+| **HTTP resilience** | Configurable timeouts (`PTY_REQUEST_TIMEOUT`) and automatic retries with exponential backoff on transient failures (`PTY_MAX_RETRIES`). |
+| **Local usage statistics** | Anonymous per-operation counts written to `~/.protegrity/usage_stats.json` for migration planning. View with `pty-migrate stats`. |
+| **`pty-migrate` CLI** | One-command migration helper: pre-flight checks, PPC policy creation, and stats reporting. |
 | **Cross-Platform Support** | Compatible with **Linux**, **MacOS**, and **Windows**.                                   |
 
 ##  Getting Started
@@ -170,8 +169,6 @@ Requires the Cloud Protect endpoint URL plus credentials for one of the supporte
 
 > No portal registration needed, Protegrity AI Team Edition uses the credentials provided by the Protegrity admin.
 
-#### Option B: Protegrity AI Team Edition / Cloud Protect (own deployment)
-Requires the Cloud Protect endpoint URL plus credentials for one of the supported [auth modes](#connecting-to-protegrity-ai-team-edition-cloud-protect).
 
 ### Build the protegrity-ai-developer-python module
 
