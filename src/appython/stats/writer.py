@@ -9,7 +9,7 @@ import json
 import logging
 import os
 import sys
-from datetime import datetime
+from datetime import datetime, timezone
 from pathlib import Path
 
 logger = logging.getLogger(__name__)
@@ -61,7 +61,7 @@ def _stats_path():
 
 def _empty_stats():
     """Return a fresh empty stats structure."""
-    now = datetime.utcnow().isoformat(timespec="seconds") + "Z"
+    now = datetime.now(timezone.utc).isoformat(timespec="seconds").replace("+00:00", "Z")
     return {
         "schema_version": _SCHEMA_VERSION,
         "collected_since": now,
@@ -92,7 +92,7 @@ def _merge_session(existing, session_data):
         existing: The full stats dict (will be mutated).
         session_data: Dict from UsageCollector.get_session_data().
     """
-    now = datetime.utcnow().isoformat(timespec="seconds") + "Z"
+    now = datetime.now(timezone.utc).isoformat(timespec="seconds").replace("+00:00", "Z")
     existing["last_updated"] = now
 
     # Merge data elements
@@ -121,7 +121,7 @@ def _merge_session(existing, session_data):
     # Merge policy user
     user = session_data.get("user")
     if user:
-        today = datetime.utcnow().strftime("%Y-%m-%d")
+        today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
         if user not in existing["policy_users"]:
             existing["policy_users"][user] = {
                 "session_count": 0,

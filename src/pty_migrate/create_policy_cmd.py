@@ -164,7 +164,6 @@ def _filter_payloads_by_stats(payloads, stats):
         ]
 
     # Filter members to only matching roles, only used members
-    filtered_role_names = {r["name"].lower() for r in filtered["roles"]}
     filtered_members = {}
     for endpoint, members in payloads["members"].items():
         parts = endpoint.split("/")
@@ -421,9 +420,9 @@ def run_create_policy(args):
         if user_was_explicit:
             # User explicitly chose this user — don't second-guess
             print(f"\n  ✗ User '{client._user}' lacks PIM permissions (HTTP 403)")
-            print(f"    The PIM API requires the 'workbench_administrator' role.")
-            print(f"    Use --ppc-user with a PIM-capable user, or omit --ppc-user")
-            print(f"    to let the script auto-create the 'workbench' user.")
+            print("    The PIM API requires the 'workbench_administrator' role.")
+            print("    Use --ppc-user with a PIM-capable user, or omit --ppc-user")
+            print("    to let the script auto-create the 'workbench' user.")
             return 1
 
         print(f"\n  · User '{client._user}' lacks PIM permissions, setting up 'workbench' user...")
@@ -432,7 +431,7 @@ def run_create_policy(args):
             print(f"    Using workbench password from {args._workbench_password_source}.")
         else:
             print(f"    Using same password as '{args.ppc_user}' for workbench user")
-            print(f"    (override with --workbench-password or PTY_WORKBENCH_PASSWORD).")
+            print("    (override with --workbench-password or PTY_WORKBENCH_PASSWORD).")
         wb_exists = client.user_exists("workbench")
         if not wb_exists:
             created, resp = client.create_user(
@@ -440,12 +439,12 @@ def run_create_policy(args):
                 roles=["workbench_administrator"]
             )
             if created:
-                print(f"  ✓ Created 'workbench' user with workbench_administrator role")
+                print("  ✓ Created 'workbench' user with workbench_administrator role")
             else:
                 print(f"  ✗ Failed to create workbench user: {resp.status_code} {resp.text}")
                 return 1
         else:
-            print(f"  · 'workbench' user already exists")
+            print("  · 'workbench' user already exists")
 
         # Ensure workbench_administrator role has all required PIM permissions
         wb_permissions = [
@@ -457,24 +456,24 @@ def run_create_policy(args):
             "can_create_token",
         ]
         if client.ensure_role_permissions("workbench_administrator", wb_permissions):
-            print(f"  ✓ Role 'workbench_administrator' permissions confirmed")
+            print("  ✓ Role 'workbench_administrator' permissions confirmed")
         else:
-            print(f"  · Could not update role permissions (non-critical)")
+            print("  · Could not update role permissions (non-critical)")
 
         # Re-authenticate as workbench
         try:
             client.re_authenticate("workbench", wb_password)
-            print(f"  ✓ Re-authenticated as 'workbench'")
+            print("  ✓ Re-authenticated as 'workbench'")
         except Exception as e:
             if wb_exists:
                 # workbench was pre-existing with a different password
-                print(f"  ✗ Cannot authenticate as 'workbench' (password mismatch)")
+                print("  ✗ Cannot authenticate as 'workbench' (password mismatch)")
                 if args._workbench_password_explicit:
-                    print(f"    The provided workbench password is wrong; pass the correct one.")
+                    print("    The provided workbench password is wrong; pass the correct one.")
                 else:
                     print(f"    The 'workbench' user pre-exists with a different password than '{args.ppc_user}'.")
-                    print(f"    Re-run with --workbench-password '<workbench-password>' or")
-                    print(f"    export PTY_WORKBENCH_PASSWORD='<workbench-password>'.")
+                    print("    Re-run with --workbench-password '<workbench-password>' or")
+                    print("    export PTY_WORKBENCH_PASSWORD='<workbench-password>'.")
             else:
                 print(f"  ✗ Failed to authenticate as newly created 'workbench': {e}")
             return 1
@@ -733,7 +732,7 @@ def run_create_policy(args):
             ok2, resp2 = client.deploy(ds_uid, deploy_payload_no_app)
             if ok2:
                 print(f"  ✓ Policy deployed to datastore (ds={ds_uid}, policy={policy_uid})")
-                print(f"    Note: application not included (already assigned elsewhere)")
+                print("    Note: application not included (already assigned elsewhere)")
             else:
                 # Use the most relevant response for error reporting
                 err_resp = resp2 if resp2 is not None else resp
@@ -776,20 +775,20 @@ def run_create_policy(args):
             ds_uid_for_next_steps = str(first_uid)
 
     print(f"\n{'─' * 50}")
-    print(f"Next steps — Policy Agent setup:")
-    print(f"")
-    print(f"  1. Add the KMS export key to the datastore so the Policy Agent can")
-    print(f"     export the encrypted policy package:")
-    print(f"")
-    print(f"     curl -k -H \"Authorization: Bearer $TOKEN\" \\")
-    print(f"       -H \"Content-Type: application/json\" \\")
+    print("Next steps — Policy Agent setup:")
+    print("")
+    print("  1. Add the KMS export key to the datastore so the Policy Agent can")
+    print("     export the encrypted policy package:")
+    print("")
+    print("     curl -k -H \"Authorization: Bearer $TOKEN\" \\")
+    print("       -H \"Content-Type: application/json\" \\")
     print(f"       -X POST https://{args.ppc_host}/pty/v2/pim/datastores/{ds_uid_for_next_steps}/export/keys \\")
-    print(f"       -d '{{\"algorithm\":\"RSA-OAEP-256\",\"pem\":\"<KMS-PUBLIC-KEY-PEM>\"}}'")
-    print(f"")
-    print(f"     The fingerprint returned must match PTY_DATASTORE_KEY on the Policy Agent Lambda.")
-    print(f"")
-    print(f"  2. Trigger the Policy Agent Lambda (or wait for the hourly CRON schedule).")
-    print(f"")
-    print(f"  3. Run: pty-migrate check")
+    print("       -d '{\"algorithm\":\"RSA-OAEP-256\",\"pem\":\"<KMS-PUBLIC-KEY-PEM>\"}'")
+    print("")
+    print("     The fingerprint returned must match PTY_DATASTORE_KEY on the Policy Agent Lambda.")
+    print("")
+    print("  2. Trigger the Policy Agent Lambda (or wait for the hourly CRON schedule).")
+    print("")
+    print("  3. Run: pty-migrate check")
     print()
     return 0

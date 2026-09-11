@@ -11,6 +11,12 @@ _DEFAULT_POLICY_USER = "superuser"
 
 _PAYLOADS_DIR = Path(__file__).parent / "payloads"
 
+_NOT_INSTALLED = "not installed"
+_LABEL_PPC_DATASTORES = "PPC datastores"
+_LABEL_PPC_DATA_ELEMENTS = "PPC data elements"
+_LABEL_PPC_ROLE_MEMBERS = "PPC role members"
+_LABEL_PPC_DATASTORE_EXPORT_KEYS = "PPC datastore export keys"
+
 
 def _load_rules_index():
     """Build a lookup of expected permissions from the bundled DE payloads.
@@ -112,16 +118,16 @@ def _check_sdk_version():
     # Prefer package metadata so we can tell "not installed" apart from
     # "installed but unimportable on this OS".
     try:
-        from importlib.metadata import version as _pkg_version, PackageNotFoundError
+        from importlib.metadata import version as _pkg_version, PackageNotFoundError as _PackageNotFoundError
     except ImportError:  # pragma: no cover  (py<3.8)
         _pkg_version = None
-        PackageNotFoundError = Exception  # type: ignore
+        _PackageNotFoundError = Exception  # type: ignore
 
     pkg_ver = None
     if _pkg_version is not None:
         try:
             pkg_ver = _pkg_version("protegrity-ai-developer-python")
-        except PackageNotFoundError:
+        except _PackageNotFoundError:
             pkg_ver = None
 
     try:
@@ -135,14 +141,14 @@ def _check_sdk_version():
     except Exception as e:
         if pkg_ver is not None:
             return "load_error", f"{pkg_ver} installed but failed to load: {e}"
-        return "missing", "not installed"
+        return "missing", _NOT_INSTALLED
 
 
 def _check_java_sdk_version():
     """Check Java SDK version >= 1.1.0 from local Maven repo."""
     m2_path = Path.home() / ".m2" / "repository" / "com" / "protegrity" / "application-protector-java"
     if not m2_path.is_dir():
-        return None, "not installed"
+        return None, _NOT_INSTALLED
 
     versions = []
     for d in m2_path.iterdir():
@@ -190,7 +196,6 @@ def _check_auth_mode():
     detail = ""
     if mode == "aws_iam":
         profile = os.getenv("AWS_PROFILE", "")
-        region = os.getenv("AWS_DEFAULT_REGION", os.getenv("AWS_REGION", ""))
         if profile:
             detail = f"profile: {profile}"
         elif os.getenv("AWS_ACCESS_KEY_ID"):
@@ -294,8 +299,8 @@ def _check_endpoint_reachable(host):
     except requests.exceptions.SSLError:
         # Try without SSL verification
         try:
-            resp = requests.get(f"{host}/v1/version", timeout=10, verify=False)
-            return True, f"reachable (SSL warning)"
+            resp = requests.get(f"{host}/v1/version", timeout=10, verify=False)  # NOSONAR
+            return True, "reachable (SSL warning)"
         except Exception:
             pass
     except requests.exceptions.ConnectionError:
@@ -307,7 +312,7 @@ def _check_endpoint_reachable(host):
     return False, "Unreachable"
 
 
-def _check_auth_works(host):
+def _check_auth_works():
     """Attempt an authenticated request to TE/Cloud Protect."""
     try:
         from appython import Protector
@@ -332,7 +337,7 @@ def _check_auth_works(host):
         return False, str(e)
 
 
-def _check_data_elements(host, stats):
+def _check_data_elements(stats):
     """Verify the policy is reachable end-to-end via a single protect call.
 
     A successful `protect` proves three things at once: the SDK is configured,
@@ -469,19 +474,19 @@ def _check_ppc_deployment(ppc, stats, full=False):
     try:
         datastores = client.list_datastores()
     except Exception as e:
-        return [("PPC datastores", False, str(e))], info
+        return [(_LABEL_PPC_DATASTORES, False, str(e))], info
     if not datastores:
-        results.append(("PPC datastores", False, "no datastores defined"))
+        results.append((_LABEL_PPC_DATASTORES, False, "no datastores defined"))
         return results, info
     ds_names = [d.get("name", "?") for d in datastores]
     dev_edition_ds = next((d for d in datastores if d.get("name") == "DevEdition"), None)
     if dev_edition_ds:
         info["dev_edition_uid"] = dev_edition_ds.get("uid") or dev_edition_ds.get("id")
-        results.append(("PPC datastores", True,
+        results.append((_LABEL_PPC_DATASTORES, True,
                         f"DevEdition present (id={info['dev_edition_uid']}, "
                         f"{len(datastores)} total: {', '.join(ds_names)})"))
     else:
-        results.append(("PPC datastores", False,
+        results.append((_LABEL_PPC_DATASTORES, False,
                         f"DevEdition datastore not found (have: {', '.join(ds_names)})"))
 
     # Data elements present on PPC
@@ -508,7 +513,7 @@ def _check_ppc_deployment(ppc, stats, full=False):
     try:
         ppc_des = client.list_data_elements()
     except Exception as e:
-        return results + [("PPC data elements", False, str(e))], info
+        return results + [(_LABEL_PPC_DATA_ELEMENTS, False, str(e))], info
     ppc_de_names = {d.get("name") for d in ppc_des}
     missing_des = [de for de in required_des if de not in ppc_de_names]
     skipped_suffix = (
@@ -516,14 +521,14 @@ def _check_ppc_deployment(ppc, stats, full=False):
         if skipped_des else ""
     )
     if missing_des:
-        results.append(("PPC data elements", False,
+        results.append((_LABEL_PPC_DATA_ELEMENTS, False,
                         f"{len(missing_des)} of {len(required_des)} {scope_note} missing: "
                         f"{', '.join(missing_des)}{skipped_suffix}"))
     elif not required_des:
-        results.append(("PPC data elements", None,
+        results.append((_LABEL_PPC_DATA_ELEMENTS, None,
                         f"no standard DEs to check{skipped_suffix}"))
     else:
-        results.append(("PPC data elements", True,
+        results.append((_LABEL_PPC_DATA_ELEMENTS, True,
                         f"all {len(required_des)} {scope_note} present{skipped_suffix}"))
 
     # Policy users registered as role members on PPC
@@ -557,17 +562,17 @@ def _check_ppc_deployment(ppc, stats, full=False):
                     continue
             missing_users = [u for u in required_users if u not in all_members]
             if missing_users:
-                results.append(("PPC role members", False,
+                results.append((_LABEL_PPC_ROLE_MEMBERS, False,
                                 f"users not in any role: {', '.join(missing_users)}"
                                 f"{user_skipped_suffix}"))
             else:
-                results.append(("PPC role members", True,
+                results.append((_LABEL_PPC_ROLE_MEMBERS, True,
                                 f"all {len(required_users)} users are role members"
                                 f"{user_skipped_suffix}"))
         except Exception as e:
-            results.append(("PPC role members", False, str(e)))
+            results.append((_LABEL_PPC_ROLE_MEMBERS, False, str(e)))
     else:
-        results.append(("PPC role members", None,
+        results.append((_LABEL_PPC_ROLE_MEMBERS, None,
                         f"no standard policy users in stats{user_skipped_suffix}"))
 
     # Datastore export keys (required for Cloud Protect to publish the policy)
@@ -586,14 +591,14 @@ def _check_ppc_deployment(ppc, stats, full=False):
         except Exception:
             ds_without_keys.append(ds.get("name", ds_uid))
     if "DevEdition" in ds_with_keys:
-        results.append(("PPC datastore export keys", True,
+        results.append((_LABEL_PPC_DATASTORE_EXPORT_KEYS, True,
                         f"configured on DevEdition (and: {', '.join(ds_with_keys)})"))
     elif ds_with_keys:
-        results.append(("PPC datastore export keys", False,
+        results.append((_LABEL_PPC_DATASTORE_EXPORT_KEYS, False,
                         f"export keys present on {', '.join(ds_with_keys)} "
                         f"but not on DevEdition"))
     else:
-        results.append(("PPC datastore export keys", False,
+        results.append((_LABEL_PPC_DATASTORE_EXPORT_KEYS, False,
                         f"no export keys on any datastore ({', '.join(ds_without_keys)})"))
 
     return results, info
@@ -647,7 +652,6 @@ def run_check(args):
     print()
 
     issues = 0
-    skipped = 0
 
     # 1. SDK versions
     py_status, py_version = _check_sdk_version()
@@ -658,22 +662,22 @@ def run_check(args):
         print(f"  ✓ Python SDK: {py_version} (minimum: 1.2.1)")
     elif py_status == "old":
         print(f"  ✗ Python SDK: {py_version} (need >= 1.2.1)")
-        print(f"    → pip install --upgrade protegrity-ai-developer-python")
+        print("    → pip install --upgrade protegrity-ai-developer-python")
     elif py_status == "load_error":
         # Package installed but `import appython` raised. Report verbatim so
         # users can act on the underlying ImportError without us guessing.
         print(f"  ✗ Python SDK: {py_version}")
-        print(f"    → Reinstall the SDK: pip install --force-reinstall protegrity-ai-developer-python")
+        print("    → Reinstall the SDK: pip install --force-reinstall protegrity-ai-developer-python")
     else:  # missing
-        print(f"  · Python SDK: not installed")
+        print("  · Python SDK: not installed")
 
     if java_ok is True:
         print(f"  ✓ Java SDK: {java_version} (minimum: 1.1.0)")
     elif java_ok is False:
         print(f"  ✗ Java SDK: {java_version} (need >= 1.1.0)")
-        print(f"    → Update the Java SDK dependency in your pom.xml to >= 1.1.0")
+        print("    → Update the Java SDK dependency in your pom.xml to >= 1.1.0")
     else:
-        print(f"  · Java SDK: not installed")
+        print("  · Java SDK: not installed")
 
     # Migration only needs one SDK at the required version.
     sdk_ok = py_ok or (java_ok is True)
@@ -681,9 +685,9 @@ def run_check(args):
         # Don't repeat per-SDK fix hints already printed above. Only add the
         # "install at least one" message when neither is present at all.
         if py_status == "missing" and java_ok is None:
-            print(f"    → Install at least one SDK:")
-            print(f"      Python: pip install --upgrade protegrity-ai-developer-python")
-            print(f"      Java:   add com.protegrity:application-protector-java >= 1.1.0 to pom.xml")
+            print("    → Install at least one SDK:")
+            print("      Python: pip install --upgrade protegrity-ai-developer-python")
+            print("      Java:   add com.protegrity:application-protector-java >= 1.1.0 to pom.xml")
         issues += 1
 
     # 2. Team Edition host configured
@@ -691,8 +695,8 @@ def run_check(args):
     if ok:
         print(f"  ✓ PTY_CP_HOST: {host}")
     else:
-        print(f"  ✗ PTY_CP_HOST not set")
-        print(f"    → export PTY_CP_HOST=<your-cloud-protect-invoke-url>")
+        print("  ✗ PTY_CP_HOST not set")
+        print("    → export PTY_CP_HOST=<your-cloud-protect-invoke-url>")
         issues += 1
 
     # 3. Auth mode configured
@@ -714,23 +718,21 @@ def run_check(args):
             print(f"  ✗ Team Edition endpoint unreachable: {reach_detail}")
             issues += 1
     else:
-        print(f"  ⊘ Team Edition endpoint: skipped (no host configured)")
-        skipped += 1
+        print("  ⊘ Team Edition endpoint: skipped (no host configured)")
 
     # 5. Authentication works (only needed for protect-fn test)
     auth_works = None
     if do_protect_test and ok and host and auth_ok:
-        auth_works, auth_detail = _check_auth_works(host)
+        auth_works, auth_detail = _check_auth_works()
         if auth_works:
             print(f"  ✓ Authentication: {auth_detail}")
         else:
             print(f"  ✗ Authentication failed: {auth_detail}")
-            print(f"    → Verify your credentials and that the policy is deployed on your PPC")
-            print(f"    → Run: pty-migrate create-policy --ppc-host <your-ppc-host> --ppc-password <password>")
+            print("    → Verify your credentials and that the policy is deployed on your PPC")
+            print("    → Run: pty-migrate create-policy --ppc-host <your-ppc-host> --ppc-password <password>")
             issues += 1
     elif do_protect_test:
-        print(f"  ⊘ Authentication: skipped (prerequisites not met)")
-        skipped += 1
+        print("  ⊘ Authentication: skipped (prerequisites not met)")
 
     # 6. Policy users
     if stats:
@@ -763,16 +765,16 @@ def run_check(args):
                 print(f"  · {label}: {detail}")
         if ppc_failed:
             print(f"    → Run: pty-migrate create-policy --ppc-host {ppc['host']} --ppc-password <password>")
-            print(f"      (add --full to create the full Developer Edition policy)")
+            print("      (add --full to create the full Developer Edition policy)")
             if dev_edition_uid:
                 print(f"    → Ensure the DevEdition datastore (id={dev_edition_uid}) has the KMS export key configured.")
             else:
-                print(f"    → Ensure the DevEdition datastore has the KMS export key configured.")
+                print("    → Ensure the DevEdition datastore has the KMS export key configured.")
 
     # 7b. Round-trip protect/unprotect test (--with-protect-fn-test)
     if do_protect_test:
         if ok and host and auth_ok and auth_works:
-            de_ok, de_detail = _check_data_elements(host, stats)
+            de_ok, de_detail = _check_data_elements(stats)
             if de_ok is True:
                 print(f"  ✓ Protect/unprotect test: {de_detail}")
             elif de_ok is False:
@@ -781,27 +783,24 @@ def run_check(args):
                 issues += 1
             else:
                 print(f"  ⊘ Protect/unprotect test: {de_detail}")
-                skipped += 1
         elif auth_works is False:
             # Auth probe already failed — skip the full sweep so we don't
             # hang for minutes hammering 28 DEs × N users with bad creds.
-            print(f"  ⊘ Protect/unprotect test: skipped (authentication failed)")
-            skipped += 1
+            print("  ⊘ Protect/unprotect test: skipped (authentication failed)")
         else:
-            print(f"  ⊘ Protect/unprotect test: skipped (prerequisites not met)")
-            skipped += 1
+            print("  ⊘ Protect/unprotect test: skipped (prerequisites not met)")
 
     # Result
     print()
     print(f"  {'─' * 50}")
     if issues == 0:
-        print(f"  RESULT: ✓ READY FOR MIGRATION")
+        print("  RESULT: ✓ READY FOR MIGRATION")
         print()
-        print(f"  Next steps:")
+        print("  Next steps:")
         step = 1
         if do_ppc and not do_protect_test:
             print(f"    {step}. Trigger the Policy Agent Lambda so the policy is published to Cloud Protect")
-            print(f"       (runs hourly if CRON enabled, or invoke manually from the AWS Lambda console).")
+            print("       (runs hourly if CRON enabled, or invoke manually from the AWS Lambda console).")
             step += 1
             print(f"    {step}. Re-run `pty-migrate check --with-protect-fn-test` to verify end-to-end.")
             step += 1
@@ -816,7 +815,7 @@ def run_check(args):
     else:
         print(f"  RESULT: ✗ NOT READY — {issues} issue(s) to resolve")
         print()
-        print(f"  To resolve:")
+        print("  To resolve:")
         step = 1
         if not sdk_ok:
             if py_status == "load_error":
@@ -838,30 +837,30 @@ def run_check(args):
             step += 1
         if auth_works is False:
             print(f"    {step}. Authentication is configured but Cloud Protect rejected the request.")
-            print(f"       - For aws_iam: confirm the IAM principal (profile, role, or keys) is")
+            print("       - For aws_iam: confirm the IAM principal (profile, role, or keys) is")
             print(f"         allowed by the API Gateway resource policy / Lambda authorizer for {host}.")
-            print(f"       - For bearer_token / oauth2: confirm the token is valid and not expired.")
-            print(f"       - For mtls: confirm PTY_CLIENT_CERT / PTY_CLIENT_KEY are trusted by CP.")
-            print(f"       - Confirm the Policy Agent Lambda has synced the policy to Cloud Protect")
-            print(f"         (a freshly-deployed policy may take up to an hour without manual trigger).")
+            print("       - For bearer_token / oauth2: confirm the token is valid and not expired.")
+            print("       - For mtls: confirm PTY_CLIENT_CERT / PTY_CLIENT_KEY are trusted by CP.")
+            print("       - Confirm the Policy Agent Lambda has synced the policy to Cloud Protect")
+            print("         (a freshly-deployed policy may take up to an hour without manual trigger).")
             step += 1
         if ppc_failed:
             print(f"    {step}. Create/deploy the Developer Edition policy on PPC:")
-            print(f"       pty-migrate create-policy --ppc-host <your-ppc-host> --ppc-password <password> --full")
+            print("       pty-migrate create-policy --ppc-host <your-ppc-host> --ppc-password <password> --full")
             step += 1
             ds_id_token = dev_edition_uid if dev_edition_uid else "{id}"
             print(f"    {step}. Add the KMS export key to the DevEdition datastore:")
             print(f"       POST /pty/v2/pim/datastores/{ds_id_token}/export/keys with the KMS public-key PEM.")
             if dev_edition_uid:
-                print(f"       Example:")
+                print("       Example:")
                 print(f"         curl -k -X POST https://{ppc['host']}/pty/v2/pim/datastores/{dev_edition_uid}/export/keys \\")
-                print(f"           -H \"Authorization: Bearer $TOKEN\" -H \"Content-Type: application/json\" \\")
-                print(f"           -d '{{\"algorithm\":\"RSA-OAEP-256\",\"pem\":\"<KMS-PUBLIC-KEY-PEM>\"}}'")
-            print(f"       (The cloud-side Policy Agent Lambda reads this key from its own")
-            print(f"        PTY_DATASTORE_KEY env var — it is NOT a client-side variable.)")
+                print("           -H \"Authorization: Bearer $TOKEN\" -H \"Content-Type: application/json\" \\")
+                print("           -d '{\"algorithm\":\"RSA-OAEP-256\",\"pem\":\"<KMS-PUBLIC-KEY-PEM>\"}'")
+            print("       (The cloud-side Policy Agent Lambda reads this key from its own")
+            print("        PTY_DATASTORE_KEY env var — it is NOT a client-side variable.)")
             step += 1
             print(f"    {step}. Trigger the Policy Agent Lambda to sync the policy to Cloud Protect")
-            print(f"       (runs hourly if CRON enabled, or invoke manually from AWS Lambda console).")
+            print("       (runs hourly if CRON enabled, or invoke manually from AWS Lambda console).")
             step += 1
         if de_failed:
             print(f"    {step}. Re-run protect/unprotect test once the Policy Agent has synced.")

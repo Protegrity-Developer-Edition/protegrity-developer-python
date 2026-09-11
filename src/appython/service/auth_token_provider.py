@@ -9,6 +9,7 @@ from appython.utils.constants import HOST as host
 
 
 class AuthTokenProvider:
+    @staticmethod
     def get_jwt_token(email: str, password: str,api_key:str):
         """
         Authenticate user credentials and retrieve a JWT token.
